@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,24 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				editor: {
+					blue: '#3182ce',
+					purple: '#805ad5',
+					orange: '#dd6b20',
+					green: '#38a169',
+					red: '#e53e3e',
+				},
+				course: {
+					100: '#ebf8ff',
+					200: '#bee3f8',
+					300: '#90cdf4',
+					400: '#63b3ed',
+					500: '#4299e1',
+					600: '#3182ce',
+					700: '#2b6cb0',
+					800: '#2c5282',
+					900: '#2a4365',
 				}
 			},
 			borderRadius: {
@@ -84,12 +103,63 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'fade-out': {
+					'0%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					},
+					'100%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
+				'fade-out': 'fade-out 0.3s ease-out'
+			},
+			boxShadow: {
+				'course': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+				'course-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+				'course-xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+			},
+			typography: {
+				DEFAULT: {
+					css: {
+						maxWidth: '65ch',
+						color: 'inherit',
+						a: {
+							color: 'inherit',
+							opacity: 0.8,
+							'&:hover': {
+								opacity: 1,
+							},
+							textDecoration: 'underline',
+						},
+						b: { color: 'inherit' },
+						strong: { color: 'inherit' },
+						em: { color: 'inherit' },
+						h1: { color: 'inherit' },
+						h2: { color: 'inherit' },
+						h3: { color: 'inherit' },
+						h4: { color: 'inherit' },
+						code: { color: 'inherit' },
+					},
+				},
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
