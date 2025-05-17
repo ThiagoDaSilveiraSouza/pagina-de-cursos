@@ -1,9 +1,6 @@
 
 import React from 'react';
 import { EditorProvider } from '@/contexts/EditorContext';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-import { Settings } from 'lucide-react';
 import HeroBlock from '@/components/blocks/HeroBlock';
 import BenefitsBlock from '@/components/blocks/BenefitsBlock';
 import { useEditor } from '@/contexts/EditorContext';
@@ -38,15 +35,6 @@ const Index = () => {
   return (
     <EditorProvider>
       <div className="min-h-screen bg-background">
-        <div className="fixed top-4 right-4 z-50">
-          <Link to="/admin">
-            <Button variant="outline" className="gap-2 bg-white shadow-md">
-              <Settings size={18} />
-              Editar Página
-            </Button>
-          </Link>
-        </div>
-        
         <LandingPageContent />
       </div>
     </EditorProvider>
