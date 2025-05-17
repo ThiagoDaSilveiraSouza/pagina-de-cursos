@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useEditor } from '@/contexts/EditorContext';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -9,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Slider } from '@/components/ui/slider';
+import { BlockStyles } from '@/types/editor';
 
 const BlockProperties = () => {
   const { landingPage, selectedBlockId, updateBlock } = useEditor();
@@ -53,12 +53,16 @@ const BlockProperties = () => {
     });
   };
   
-  const handleStyleChange = (category: string, field: string, value: any) => {
+  const handleStyleChange = <K extends keyof BlockStyles>(
+    category: K, 
+    field: string, 
+    value: any
+  ) => {
     updateBlock(selectedBlockId, {
       styles: {
         ...block.styles,
         [category]: {
-          ...block.styles[category as keyof typeof block.styles],
+          ...block.styles[category],
           [field]: value
         }
       }
@@ -406,7 +410,7 @@ const BlockProperties = () => {
                   <Label>Sombra</Label>
                   <Select 
                     value={block.styles.shadow} 
-                    onValueChange={(value) => updateBlock(selectedBlockId, {
+                    onValueChange={(value: "none" | "sm" | "md" | "lg" | "xl") => updateBlock(selectedBlockId, {
                       styles: { ...block.styles, shadow: value }
                     })}
                   >
