@@ -6,6 +6,12 @@ import { Separator } from '@/components/ui/separator';
 import { BlockType } from '@/types/editor';
 import { useEditor } from '@/contexts/EditorContext';
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@/components/ui/tooltip';
+import {
   FileText,
   BookOpen,
   MessageSquare,
@@ -84,20 +90,25 @@ const BlockSelector = () => {
         <h3 className="text-lg font-semibold mb-2">Adicionar Bloco</h3>
         <Separator className="my-2" />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-2 mt-3">
-          {blocks.map((block) => (
-            <Button 
-              key={block.type}
-              variant="outline" 
-              className="flex items-center h-auto p-3 justify-start text-left gap-3"
-              onClick={() => addBlock(block.type)}
-            >
-              <div className="bg-muted rounded-md p-2">{block.icon}</div>
-              <div>
-                <div className="font-medium">{block.label}</div>
-                <div className="text-xs text-muted-foreground">{block.description}</div>
-              </div>
-            </Button>
-          ))}
+          <TooltipProvider>
+            {blocks.map((block) => (
+              <Tooltip key={block.type}>
+                <TooltipTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    className="flex items-center h-auto p-3 justify-start text-left"
+                    onClick={() => addBlock(block.type)}
+                  >
+                    <div className="bg-muted rounded-md p-2 mr-3">{block.icon}</div>
+                    <div className="font-medium">{block.label}</div>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="right">
+                  <p>{block.description}</p>
+                </TooltipContent>
+              </Tooltip>
+            ))}
+          </TooltipProvider>
         </div>
       </CardContent>
     </Card>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useEditor } from '@/contexts/EditorContext';
 import { Button } from '@/components/ui/button';
