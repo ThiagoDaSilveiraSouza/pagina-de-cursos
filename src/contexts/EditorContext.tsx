@@ -3,107 +3,109 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Block, BlockType, LandingPageData } from '../types/editor';
 import { v4 as uuidv4 } from 'uuid';
 import { toast } from '@/components/ui/use-toast';
+import { landingPageExample } from '../moc';
+
 
 // Initial landing page data with sample blocks
-const initialLandingPage: LandingPageData = {
-  title: "Curso Online",
-  blocks: [
-    {
-      id: uuidv4(),
-      type: 'hero',
-      name: 'Hero Section',
-      background: {
-        type: 'gradient',
-        value: 'linear-gradient(90deg, #3182ce 0%, #805ad5 100%)'
-      },
-      styles: {
-        padding: { top: 80, bottom: 80, left: 16, right: 16 },
-        margin: { top: 0, bottom: 0 },
-        borderRadius: 0,
-        shadow: 'none',
-        border: { width: 0, color: '#000000', style: 'none' }
-      },
-      layout: {
-        columns: 2,
-        alignment: 'center',
-        verticalAlignment: 'center'
-      },
-      content: {
-        title: 'Domine a Estratégia Digital',
-        subtitle: 'Aprenda a criar campanhas de marketing digital que convertem',
-        content: 'Descubra as estratégias comprovadas que transformaram negócios e aumentaram a receita em mais de 300%.',
-        ctaText: 'Quero Transformar Meu Negócio',
-        ctaLink: '#offer',
-        image: '/placeholder.svg'
-      },
-      active: true,
-      order: 0
-    },
-    {
-      id: uuidv4(),
-      type: 'benefits',
-      name: 'Benefits Section',
-      background: {
-        type: 'color',
-        value: '#ffffff'
-      },
-      styles: {
-        padding: { top: 64, bottom: 64, left: 16, right: 16 },
-        margin: { top: 0, bottom: 0 },
-        borderRadius: 0,
-        shadow: 'none',
-        border: { width: 0, color: '#000000', style: 'none' }
-      },
-      layout: {
-        columns: 3,
-        alignment: 'center',
-        verticalAlignment: 'top'
-      },
-      content: {
-        title: 'O Que Você Vai Aprender',
-        subtitle: 'Habilidades que transformam resultados',
-        items: [
-          {
-            title: 'Estratégia de Conteúdo',
-            content: 'Descubra como criar conteúdo que engaja e converte sua audiência.',
-            icon: 'file-text'
-          },
-          {
-            title: 'Tráfego Pago',
-            content: 'Domine as técnicas de anúncios pagos no Facebook e Instagram.',
-            icon: 'circle-check'
-          },
-          {
-            title: 'Copywriting',
-            content: 'Aprenda a escrever textos persuasivos que aumentam suas vendas.',
-            icon: 'book'
-          }
-        ]
-      },
-      active: true,
-      order: 1
-    }
-  ],
-  metadata: {
-    title: 'Curso de Marketing Digital - Domine a Estratégia',
-    description: 'Aprenda a criar campanhas de marketing digital que convertem e transformam seu negócio.',
-    keywords: 'marketing digital, curso online, estratégia digital'
-  },
-  settings: {
-    fontPrimary: 'Inter, sans-serif',
-    fontSecondary: 'Poppins, sans-serif',
-    colorPrimary: '#3182ce',
-    colorSecondary: '#805ad5',
-    colorAccent: '#e53e3e'
-  }
-};
+// const initialLandingPage: LandingPageData = {
+//   title: "Curso Online",
+//   blocks: [
+//     {
+//       id: uuidv4(),
+//       type: 'hero',
+//       name: 'Hero Section',
+//       background: {
+//         type: 'gradient',
+//         value: 'linear-gradient(90deg, #3182ce 0%, #805ad5 100%)'
+//       },
+//       styles: {
+//         padding: { top: 80, bottom: 80, left: 16, right: 16 },
+//         margin: { top: 0, bottom: 0 },
+//         borderRadius: 0,
+//         shadow: 'none',
+//         border: { width: 0, color: '#000000', style: 'none' }
+//       },
+//       layout: {
+//         columns: 2,
+//         alignment: 'center',
+//         verticalAlignment: 'center'
+//       },
+//       content: {
+//         title: 'Domine a Estratégia Digital',
+//         subtitle: 'Aprenda a criar campanhas de marketing digital que convertem',
+//         content: 'Descubra as estratégias comprovadas que transformaram negócios e aumentaram a receita em mais de 300%.',
+//         ctaText: 'Quero Transformar Meu Negócio',
+//         ctaLink: '#offer',
+//         image: '/placeholder.svg'
+//       },
+//       active: true,
+//       order: 0
+//     },
+//     {
+//       id: uuidv4(),
+//       type: 'benefits',
+//       name: 'Benefits Section',
+//       background: {
+//         type: 'color',
+//         value: '#ffffff'
+//       },
+//       styles: {
+//         padding: { top: 64, bottom: 64, left: 16, right: 16 },
+//         margin: { top: 0, bottom: 0 },
+//         borderRadius: 0,
+//         shadow: 'none',
+//         border: { width: 0, color: '#000000', style: 'none' }
+//       },
+//       layout: {
+//         columns: 3,
+//         alignment: 'center',
+//         verticalAlignment: 'top'
+//       },
+//       content: {
+//         title: 'O Que Você Vai Aprender',
+//         subtitle: 'Habilidades que transformam resultados',
+//         items: [
+//           {
+//             title: 'Estratégia de Conteúdo',
+//             content: 'Descubra como criar conteúdo que engaja e converte sua audiência.',
+//             icon: 'file-text'
+//           },
+//           {
+//             title: 'Tráfego Pago',
+//             content: 'Domine as técnicas de anúncios pagos no Facebook e Instagram.',
+//             icon: 'circle-check'
+//           },
+//           {
+//             title: 'Copywriting',
+//             content: 'Aprenda a escrever textos persuasivos que aumentam suas vendas.',
+//             icon: 'book'
+//           }
+//         ]
+//       },
+//       active: true,
+//       order: 1
+//     }
+//   ],
+//   metadata: {
+//     title: 'Curso de Marketing Digital - Domine a Estratégia',
+//     description: 'Aprenda a criar campanhas de marketing digital que convertem e transformam seu negócio.',
+//     keywords: 'marketing digital, curso online, estratégia digital'
+//   },
+//   settings: {
+//     fontPrimary: 'Inter, sans-serif',
+//     fontSecondary: 'Poppins, sans-serif',
+//     colorPrimary: '#3182ce',
+//     colorSecondary: '#805ad5',
+//     colorAccent: '#e53e3e'
+//   }
+// };
 
 interface EditorContextType {
   landingPage: LandingPageData;
   selectedBlockId: string | null;
   isPreviewMode: boolean;
   devicePreview: 'desktop' | 'mobile';
-  
+
   // Block Management
   addBlock: (type: BlockType) => void;
   updateBlock: (blockId: string, data: Partial<Omit<Block, 'id'>>) => void;
@@ -112,15 +114,15 @@ interface EditorContextType {
   moveBlockUp: (blockId: string) => void;
   moveBlockDown: (blockId: string) => void;
   duplicateBlock: (blockId: string) => void;
-  
+
   // Page Settings
   updatePageSettings: (settings: Partial<LandingPageData['settings']>) => void;
   updatePageMetadata: (metadata: Partial<LandingPageData['metadata']>) => void;
-  
+
   // UI State
   togglePreviewMode: () => void;
   setDevicePreview: (device: 'desktop' | 'mobile') => void;
-  
+
   // Data Management
   exportData: () => string;
   importData: (data: string) => void;
@@ -130,7 +132,7 @@ interface EditorContextType {
 export const EditorContext = createContext<EditorContextType | undefined>(undefined);
 
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
-  const [landingPage, setLandingPage] = useState<LandingPageData>(initialLandingPage);
+  const [landingPage, setLandingPage] = useState<LandingPageData>(landingPageExample);
   const [selectedBlockId, setSelectedBlockId] = useState<string | null>(null);
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [devicePreview, setDevicePreview] = useState<'desktop' | 'mobile'>('desktop');
@@ -160,12 +162,12 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
       active: true,
       order: landingPage.blocks.length
     };
-    
+
     setLandingPage(prev => ({
       ...prev,
       blocks: [...prev.blocks, newBlock]
     }));
-    
+
     setSelectedBlockId(newBlock.id);
     toast({
       title: "Bloco adicionado",
@@ -176,9 +178,9 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
   const updateBlock = (blockId: string, data: Partial<Omit<Block, 'id'>>) => {
     setLandingPage(prev => ({
       ...prev,
-      blocks: prev.blocks.map(block => 
-        block.id === blockId ? { 
-          ...block, 
+      blocks: prev.blocks.map(block =>
+        block.id === blockId ? {
+          ...block,
           ...data as any // Using any to bypass the type error in BlockProperties
         } : block
       )
@@ -190,11 +192,11 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
       ...prev,
       blocks: prev.blocks.filter(block => block.id !== blockId)
     }));
-    
+
     if (selectedBlockId === blockId) {
       setSelectedBlockId(null);
     }
-    
+
     toast({
       title: "Bloco removido",
       description: "O bloco foi removido com sucesso.",
@@ -210,17 +212,17 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
   const moveBlockUp = (blockId: string) => {
     const blockIndex = landingPage.blocks.findIndex(block => block.id === blockId);
     if (blockIndex <= 0) return;
-    
+
     const updatedBlocks = [...landingPage.blocks];
     const temp = updatedBlocks[blockIndex - 1];
     updatedBlocks[blockIndex - 1] = updatedBlocks[blockIndex];
     updatedBlocks[blockIndex] = temp;
-    
+
     // Update orders
     updatedBlocks.forEach((block, index) => {
       block.order = index;
     });
-    
+
     setLandingPage(prev => ({
       ...prev,
       blocks: updatedBlocks
@@ -230,46 +232,46 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
   const moveBlockDown = (blockId: string) => {
     const blockIndex = landingPage.blocks.findIndex(block => block.id === blockId);
     if (blockIndex === -1 || blockIndex === landingPage.blocks.length - 1) return;
-    
+
     const updatedBlocks = [...landingPage.blocks];
     const temp = updatedBlocks[blockIndex + 1];
     updatedBlocks[blockIndex + 1] = updatedBlocks[blockIndex];
     updatedBlocks[blockIndex] = temp;
-    
+
     // Update orders
     updatedBlocks.forEach((block, index) => {
       block.order = index;
     });
-    
+
     setLandingPage(prev => ({
       ...prev,
       blocks: updatedBlocks
     }));
   };
-  
+
   const duplicateBlock = (blockId: string) => {
     const blockToDuplicate = landingPage.blocks.find(block => block.id === blockId);
     if (!blockToDuplicate) return;
-    
+
     const newBlock = {
       ...blockToDuplicate,
       id: uuidv4(),
       name: `${blockToDuplicate.name} (Copy)`,
       order: landingPage.blocks.length
     };
-    
+
     setLandingPage(prev => ({
       ...prev,
       blocks: [...prev.blocks, newBlock]
     }));
-    
+
     setSelectedBlockId(newBlock.id);
     toast({
       title: "Bloco duplicado",
       description: `${newBlock.name} foi criado com sucesso.`,
     });
   };
-  
+
   const updatePageSettings = (settings: Partial<LandingPageData['settings']>) => {
     setLandingPage(prev => ({
       ...prev,
@@ -279,7 +281,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
       }
     }));
   };
-  
+
   const updatePageMetadata = (metadata: Partial<LandingPageData['metadata']>) => {
     setLandingPage(prev => ({
       ...prev,
@@ -289,18 +291,18 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
       }
     }));
   };
-  
+
   const togglePreviewMode = () => {
     setIsPreviewMode(prev => !prev);
     if (!isPreviewMode) {
       setSelectedBlockId(null);
     }
   };
-  
+
   const exportData = () => {
     return JSON.stringify(landingPage, null, 2);
   };
-  
+
   const importData = (data: string) => {
     try {
       const parsedData = JSON.parse(data) as LandingPageData;
@@ -318,9 +320,9 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
       });
     }
   };
-  
+
   const resetToDefault = () => {
-    setLandingPage(initialLandingPage);
+    setLandingPage(landingPageExample);
     setSelectedBlockId(null);
     toast({
       title: "Dados reiniciados",

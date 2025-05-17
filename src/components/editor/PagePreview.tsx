@@ -3,18 +3,24 @@ import React from 'react';
 import { useEditor } from '@/contexts/EditorContext';
 import HeroBlock from '../blocks/HeroBlock';
 import BenefitsBlock from '../blocks/BenefitsBlock';
+import CurriculumBlock from '../blocks/CurriculumBlock';
+import TestimonialsBlock from '../blocks/TestimonialsBlock';
 
 const PagePreview = () => {
   const { landingPage, devicePreview } = useEditor();
-  
+
   const renderBlock = (block: any) => {
     if (!block.active) return null;
-    
-    switch(block.type) {
+
+    switch (block.type) {
       case 'hero':
         return <HeroBlock key={block.id} block={block} />;
       case 'benefits':
         return <BenefitsBlock key={block.id} block={block} />;
+      case 'curriculum':
+        return <CurriculumBlock key={block.id} block={block} />;
+      case 'testimonials':
+        return <TestimonialsBlock key={block.id} block={block} />;
       default:
         return (
           <div key={block.id} className="p-6 border-2 border-dashed border-gray-300 bg-gray-50 rounded-md text-center">

@@ -15,7 +15,7 @@ const EditorLayout = () => {
   return (
     <div className="h-screen w-full overflow-hidden flex flex-col bg-background">
       <EditorToolbar />
-      
+
       {isPreviewMode ? (
         <div className="flex-1 overflow-hidden">
           <PagePreview />
@@ -28,17 +28,17 @@ const EditorLayout = () => {
               <BlockManager />
             </div>
           </ResizablePanel>
-          
+
           <ResizableHandle />
-          
+
           <ResizablePanel defaultSize={50} className="overflow-y-auto">
             <PagePreview />
           </ResizablePanel>
-          
+
           <ResizableHandle />
-          
-          <ResizablePanel defaultSize={25} minSize={20} maxSize={40} className="overflow-y-auto">
-            <div className="p-4 space-y-4">
+
+          <ResizablePanel defaultSize={25} minSize={20} maxSize={40} >
+            <div className="p-4 space-y-4 overflow-auto max-h-full">
               <BlockProperties />
               <PageSettings />
             </div>
@@ -48,5 +48,7 @@ const EditorLayout = () => {
     </div>
   );
 };
+
+
 
 export default EditorLayout;
