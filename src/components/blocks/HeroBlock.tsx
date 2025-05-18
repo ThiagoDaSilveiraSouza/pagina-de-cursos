@@ -1,13 +1,14 @@
+
 import React from 'react';
 import { Block } from '@/types/editor';
 import { cn } from '@/lib/utils';
 
-interface TestimonialsBlockProps {
+interface HeroBlockProps {
   block: Block;
   isEditMode?: boolean;
 }
 
-const TestimonialsBlock = ({ block, isEditMode = false }: TestimonialsBlockProps) => {
+const HeroBlock = ({ block, isEditMode = false }: HeroBlockProps) => {
   const { content, background, styles, layout } = block;
 
   const blockStyles = {
@@ -30,71 +31,60 @@ const TestimonialsBlock = ({ block, isEditMode = false }: TestimonialsBlockProps
     borderColor: styles.border.color,
   };
 
-  const getColumnClass = () => {
-    switch (layout.columns) {
-      case 1:
-        return 'grid-cols-1';
-      case 2:
-        return 'grid-cols-1 md:grid-cols-2';
-      case 3:
-        return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
-      case 4:
-        return 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4';
-      default:
-        return 'grid-cols-1';
-    }
-  };
-
   return (
     <section
       style={blockStyles}
       className={cn(
         'relative w-full overflow-hidden',
-        isEditMode && 'min-h-[300px]',
-        styles.shadow !== 'none' && 'shadow-course'
+        isEditMode && 'min-h-[400px]'
       )}
     >
       <div className="container mx-auto">
-        {content.title && (
-          <h2
-            className={cn(
-              'text-2xl md:text-3xl font-bold mb-8',
-              layout.alignment === 'center' && 'text-center',
-              layout.alignment === 'right' && 'text-right'
+        <div
+          className={cn(
+            'flex flex-col md:flex-row items-center py-12',
+            layout.alignment === 'center' && 'text-center justify-center',
+            layout.alignment === 'right' && 'text-right justify-end'
+          )}
+        >
+          <div className="w-full md:w-1/2 md:pr-8">
+            {content.title && (
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+                {content.title}
+              </h1>
             )}
-          >
-            {content.title}
-          </h2>
-        )}
 
-        <div className={cn('grid gap-6', getColumnClass())}>
-          {Array.isArray(content.testimonials) &&
-            content.testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 border border-gray-100"
+            {content.subtitle && (
+              <p className="text-xl md:text-2xl mb-6 text-muted-foreground">
+                {content.subtitle}
+              </p>
+            )}
+
+            {content.content && <p className="mb-8">{content.content}</p>}
+
+            {content.ctaText && (
+              <a
+                href={content.ctaLink || '#'}
+                className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-md font-medium hover:bg-primary/90 transition-colors"
               >
-                <div className="flex items-center gap-4">
-                  {testimonial.image && (
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.title}
-                      className="w-14 h-14 rounded-full object-cover border border-gray-200"
-                    />
-                  )}
-                  <div>
-                    <h3 className="font-semibold text-lg">{testimonial.title}</h3>
-                  </div>
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  "{testimonial.content}"
-                </p>
-              </div>
-            ))}
+                {content.ctaText}
+              </a>
+            )}
+          </div>
+
+          {content.image && (
+            <div className="w-full md:w-1/2 mt-8 md:mt-0">
+              <img
+                src={content.image}
+                alt={content.title || 'Hero'}
+                className="w-full h-auto rounded-lg shadow-lg"
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>
   );
 };
 
-export default TestimonialsBlock;
+export default HeroBlock;

@@ -63,7 +63,7 @@ const BlockProperties = () => {
     const updatedCategory = {
       ...block.styles[category],
       [field]: value
-    };
+    } as BlockStyles[K];
     
     updateBlock(selectedBlockId, {
       styles: {

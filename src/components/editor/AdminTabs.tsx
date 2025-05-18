@@ -1,28 +1,26 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useNavigate, useLocation } from 'react-router-dom';
 
-const AdminTabs = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const currentPath = location.pathname;
+const AdminTabs = ({ onTabChange }: { onTabChange: (tab: string) => void }) => {
+  const [activeTab, setActiveTab] = useState('editor');
   
   const tabs = [
-    { value: '/admin', label: 'Editor' },
-    { value: '/admin/info', label: 'Informações' },
-    { value: '/admin/sales', label: 'Vendas' },
-    { value: '/admin/analytics', label: 'Analytics' },
+    { value: 'editor', label: 'Editor' },
+    { value: 'info', label: 'Informações' },
+    { value: 'sales', label: 'Vendas' },
+    { value: 'analytics', label: 'Analytics' },
   ];
   
   const handleTabChange = (value: string) => {
-    navigate(value);
+    setActiveTab(value);
+    onTabChange(value);
   };
   
   return (
     <div className="bg-background border-b p-2">
       <Tabs 
-        value={currentPath} 
+        value={activeTab} 
         onValueChange={handleTabChange}
         className="w-full max-w-3xl mx-auto"
       >

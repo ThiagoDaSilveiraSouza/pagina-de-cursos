@@ -1,8 +1,6 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 import { BlockType } from '@/types/editor';
 import { useEditor } from '@/contexts/EditorContext';
 import {
@@ -15,7 +13,6 @@ import {
   FileText,
   BookOpen,
   MessageSquare,
-  Video,
   User,
   HelpCircle,
   MousePointer,
@@ -24,7 +21,11 @@ import {
   PlusCircle
 } from 'lucide-react';
 
-const BlockSelector = () => {
+interface BlockSelectorProps {
+  onBlockSelected?: () => void;
+}
+
+const BlockSelector = ({ onBlockSelected }: BlockSelectorProps) => {
   const { addBlock } = useEditor();
 
   const blocks: { type: BlockType, label: string, icon: React.ReactNode, description: string }[] = [
@@ -84,6 +85,13 @@ const BlockSelector = () => {
     },
   ];
 
+  const handleAddBlock = (type: BlockType) => {
+    addBlock(type);
+    if (onBlockSelected) {
+      onBlockSelected();
+    }
+  };
+
   return (
     <div className="space-y-2">
       <TooltipProvider>
@@ -93,7 +101,7 @@ const BlockSelector = () => {
               <Button 
                 variant="outline" 
                 className="flex items-center h-auto p-3 justify-start text-left w-full"
-                onClick={() => addBlock(block.type)}
+                onClick={() => handleAddBlock(block.type)}
               >
                 <div className="bg-muted rounded-md p-2 mr-3">{block.icon}</div>
                 <div className="font-medium">{block.label}</div>

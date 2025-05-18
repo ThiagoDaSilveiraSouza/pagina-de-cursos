@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useEditor } from '@/contexts/EditorContext';
 import EditorToolbar from './EditorToolbar';
 import BlockSelector from './BlockSelector';
@@ -7,20 +7,19 @@ import BlockManager from './BlockManager';
 import BlockProperties from './BlockProperties';
 import PageSettings from './PageSettings';
 import PagePreview from './PagePreview';
-import AdminTabs from './AdminTabs';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Settings, Plus, List } from 'lucide-react';
 
 const EditorLayout = () => {
   const { isPreviewMode, selectedBlockId } = useEditor();
-  const [propertiesOpen, setPropertiesOpen] = React.useState(false);
+  const [propertiesOpen, setPropertiesOpen] = useState(false);
+  const [blockDialogOpen, setBlockDialogOpen] = useState(false);
   
   return (
     <div className="h-screen w-full overflow-hidden flex flex-col bg-background">
-      <AdminTabs />
       <EditorToolbar />
 
       {isPreviewMode ? (
@@ -52,7 +51,16 @@ const EditorLayout = () => {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
-                    <BlockSelector />
+                    <Dialog open={blockDialogOpen} onOpenChange={setBlockDialogOpen}>
+                      <DialogTrigger asChild>
+                        <Button variant="outline" className="w-full">Selecionar Tipo de Bloco</Button>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <h2 className="text-xl font-semibold mb-4">Escolha um tipo de bloco</h2>
+                        <BlockSelector onBlockSelected={() => setBlockDialogOpen(false)} />
+                        <DialogClose className="mt-4" />
+                      </DialogContent>
+                    </Dialog>
                   </AccordionContent>
                 </AccordionItem>
                 
