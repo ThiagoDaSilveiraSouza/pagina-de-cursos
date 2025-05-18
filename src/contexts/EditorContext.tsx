@@ -5,101 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { toast } from '@/components/ui/use-toast';
 import { landingPageExample } from '../moc';
 
-
-// Initial landing page data with sample blocks
-// const initialLandingPage: LandingPageData = {
-//   title: "Curso Online",
-//   blocks: [
-//     {
-//       id: uuidv4(),
-//       type: 'hero',
-//       name: 'Hero Section',
-//       background: {
-//         type: 'gradient',
-//         value: 'linear-gradient(90deg, #3182ce 0%, #805ad5 100%)'
-//       },
-//       styles: {
-//         padding: { top: 80, bottom: 80, left: 16, right: 16 },
-//         margin: { top: 0, bottom: 0 },
-//         borderRadius: 0,
-//         shadow: 'none',
-//         border: { width: 0, color: '#000000', style: 'none' }
-//       },
-//       layout: {
-//         columns: 2,
-//         alignment: 'center',
-//         verticalAlignment: 'center'
-//       },
-//       content: {
-//         title: 'Domine a Estratégia Digital',
-//         subtitle: 'Aprenda a criar campanhas de marketing digital que convertem',
-//         content: 'Descubra as estratégias comprovadas que transformaram negócios e aumentaram a receita em mais de 300%.',
-//         ctaText: 'Quero Transformar Meu Negócio',
-//         ctaLink: '#offer',
-//         image: '/placeholder.svg'
-//       },
-//       active: true,
-//       order: 0
-//     },
-//     {
-//       id: uuidv4(),
-//       type: 'benefits',
-//       name: 'Benefits Section',
-//       background: {
-//         type: 'color',
-//         value: '#ffffff'
-//       },
-//       styles: {
-//         padding: { top: 64, bottom: 64, left: 16, right: 16 },
-//         margin: { top: 0, bottom: 0 },
-//         borderRadius: 0,
-//         shadow: 'none',
-//         border: { width: 0, color: '#000000', style: 'none' }
-//       },
-//       layout: {
-//         columns: 3,
-//         alignment: 'center',
-//         verticalAlignment: 'top'
-//       },
-//       content: {
-//         title: 'O Que Você Vai Aprender',
-//         subtitle: 'Habilidades que transformam resultados',
-//         items: [
-//           {
-//             title: 'Estratégia de Conteúdo',
-//             content: 'Descubra como criar conteúdo que engaja e converte sua audiência.',
-//             icon: 'file-text'
-//           },
-//           {
-//             title: 'Tráfego Pago',
-//             content: 'Domine as técnicas de anúncios pagos no Facebook e Instagram.',
-//             icon: 'circle-check'
-//           },
-//           {
-//             title: 'Copywriting',
-//             content: 'Aprenda a escrever textos persuasivos que aumentam suas vendas.',
-//             icon: 'book'
-//           }
-//         ]
-//       },
-//       active: true,
-//       order: 1
-//     }
-//   ],
-//   metadata: {
-//     title: 'Curso de Marketing Digital - Domine a Estratégia',
-//     description: 'Aprenda a criar campanhas de marketing digital que convertem e transformam seu negócio.',
-//     keywords: 'marketing digital, curso online, estratégia digital'
-//   },
-//   settings: {
-//     fontPrimary: 'Inter, sans-serif',
-//     fontSecondary: 'Poppins, sans-serif',
-//     colorPrimary: '#3182ce',
-//     colorSecondary: '#805ad5',
-//     colorAccent: '#e53e3e'
-//   }
-// };
-
 interface EditorContextType {
   landingPage: LandingPageData;
   selectedBlockId: string | null;
@@ -114,6 +19,7 @@ interface EditorContextType {
   moveBlockUp: (blockId: string) => void;
   moveBlockDown: (blockId: string) => void;
   duplicateBlock: (blockId: string) => void;
+  clearBlockSelection: () => void; // Add this method
 
   // Page Settings
   updatePageSettings: (settings: Partial<LandingPageData['settings']>) => void;
@@ -207,6 +113,11 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
   const selectBlock = (blockId: string | null) => {
     setSelectedBlockId(blockId);
     setIsPreviewMode(false);
+  };
+
+  // Add the clearBlockSelection method
+  const clearBlockSelection = () => {
+    setSelectedBlockId(null);
   };
 
   const moveBlockUp = (blockId: string) => {
@@ -343,6 +254,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
       moveBlockUp,
       moveBlockDown,
       duplicateBlock,
+      clearBlockSelection, // Add this method to the context
       updatePageSettings,
       updatePageMetadata,
       togglePreviewMode,

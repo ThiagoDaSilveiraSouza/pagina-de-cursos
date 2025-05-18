@@ -81,17 +81,23 @@ const BlockProperties = () => {
     value: any
   ) => {
     const updatedStyles = { ...block.styles };
-    const categoryObject = { ...updatedStyles[category] };
     
-    // Type safety: ensure categoryObject[field] exists before trying to update it
-    if (field in categoryObject) {
-      // @ts-ignore - we've already checked that field exists in categoryObject
-      categoryObject[field] = value;
-      updatedStyles[category] = categoryObject;
+    if (category in updatedStyles) {
+      // Create a safe copy of the category object
+      const categoryObject = { ...updatedStyles[category] } as Record<string, any>;
       
-      updateBlock(selectedBlockId, {
-        styles: updatedStyles
-      });
+      // Update the field if it exists
+      if (field in categoryObject) {
+        categoryObject[field] = value;
+        
+        // Update the styles with the new category object
+        updateBlock(selectedBlockId, {
+          styles: {
+            ...updatedStyles,
+            [category]: categoryObject
+          }
+        });
+      }
     }
   };
 
