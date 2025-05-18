@@ -85,33 +85,27 @@ const BlockSelector = () => {
   ];
 
   return (
-    <Card className="w-full">
-      <CardContent className="p-4">
-        <h3 className="text-lg font-semibold mb-2">Adicionar Bloco</h3>
-        <Separator className="my-2" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-2 mt-3">
-          <TooltipProvider>
-            {blocks.map((block) => (
-              <Tooltip key={block.type}>
-                <TooltipTrigger asChild>
-                  <Button 
-                    variant="outline" 
-                    className="flex items-center h-auto p-3 justify-start text-left"
-                    onClick={() => addBlock(block.type)}
-                  >
-                    <div className="bg-muted rounded-md p-2 mr-3">{block.icon}</div>
-                    <div className="font-medium">{block.label}</div>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent side="right">
-                  <p>{block.description}</p>
-                </TooltipContent>
-              </Tooltip>
-            ))}
-          </TooltipProvider>
-        </div>
-      </CardContent>
-    </Card>
+    <div className="space-y-2">
+      <TooltipProvider>
+        {blocks.map((block) => (
+          <Tooltip key={block.type}>
+            <TooltipTrigger asChild>
+              <Button 
+                variant="outline" 
+                className="flex items-center h-auto p-3 justify-start text-left w-full"
+                onClick={() => addBlock(block.type)}
+              >
+                <div className="bg-muted rounded-md p-2 mr-3">{block.icon}</div>
+                <div className="font-medium">{block.label}</div>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent side="right">
+              <p>{block.description}</p>
+            </TooltipContent>
+          </Tooltip>
+        ))}
+      </TooltipProvider>
+    </div>
   );
 };
 

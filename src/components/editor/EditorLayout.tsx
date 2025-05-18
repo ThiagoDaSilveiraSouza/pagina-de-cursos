@@ -7,13 +7,20 @@ import BlockManager from './BlockManager';
 import BlockProperties from './BlockProperties';
 import PageSettings from './PageSettings';
 import PagePreview from './PagePreview';
+import AdminTabs from './AdminTabs';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Settings, Plus, List } from 'lucide-react';
 
 const EditorLayout = () => {
-  const { isPreviewMode } = useEditor();
-
+  const { isPreviewMode, selectedBlockId } = useEditor();
+  const [propertiesOpen, setPropertiesOpen] = React.useState(false);
+  
   return (
     <div className="h-screen w-full overflow-hidden flex flex-col bg-background">
+      <AdminTabs />
       <EditorToolbar />
 
       {isPreviewMode ? (
@@ -24,31 +31,71 @@ const EditorLayout = () => {
         <ResizablePanelGroup direction="horizontal" className="flex-1 overflow-hidden">
           <ResizablePanel defaultSize={25} minSize={20} maxSize={40} className="overflow-y-auto">
             <div className="p-4 space-y-4">
-              <BlockSelector />
-              <BlockManager />
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="page-settings">
+                  <AccordionTrigger className="py-2">
+                    <div className="flex items-center gap-2">
+                      <Settings className="h-4 w-4" />
+                      <span>Configurações da Página</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <PageSettings />
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="block-selector">
+                  <AccordionTrigger className="py-2">
+                    <div className="flex items-center gap-2">
+                      <Plus className="h-4 w-4" />
+                      <span>Adicionar Bloco</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <BlockSelector />
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="block-manager">
+                  <AccordionTrigger className="py-2">
+                    <div className="flex items-center gap-2">
+                      <List className="h-4 w-4" />
+                      <span>Blocos da Página</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <BlockManager />
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
           </ResizablePanel>
 
           <ResizableHandle />
 
-          <ResizablePanel defaultSize={50} className="overflow-y-auto">
+          <ResizablePanel defaultSize={75} className="overflow-y-auto">
             <PagePreview />
           </ResizablePanel>
-
-          <ResizableHandle />
-
-          <ResizablePanel defaultSize={25} minSize={20} maxSize={40} >
-            <div className="p-4 space-y-4 overflow-auto max-h-full">
-              <BlockProperties />
-              <PageSettings />
-            </div>
-          </ResizablePanel>
         </ResizablePanelGroup>
+      )}
+      
+      {selectedBlockId && !isPreviewMode && (
+        <Dialog open={propertiesOpen || !!selectedBlockId} onOpenChange={setPropertiesOpen}>
+          <DialogTrigger asChild>
+            <Button 
+              className="fixed bottom-4 right-4 z-50"
+              variant="default"
+            >
+              Editar Bloco
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+            <BlockProperties />
+          </DialogContent>
+        </Dialog>
       )}
     </div>
   );
 };
-
-
 
 export default EditorLayout;

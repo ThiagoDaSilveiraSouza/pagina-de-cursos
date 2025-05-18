@@ -6,6 +6,11 @@ import BenefitsBlock from '@/components/blocks/BenefitsBlock';
 import { useEditor } from '@/contexts/EditorContext';
 import CurriculumBlock from '@/components/blocks/CurriculumBlock';
 import TestimonialsBlock from '@/components/blocks/TestimonialsBlock';
+import OfferBlock from '@/components/blocks/OfferBlock';
+import InstructorBlock from '@/components/blocks/InstructorBlock';
+import FaqBlock from '@/components/blocks/FaqBlock';
+import CtaBlock from '@/components/blocks/CtaBlock';
+import FooterBlock from '@/components/blocks/FooterBlock';
 
 // This component handles the actual rendering of the landing page blocks
 const LandingPageContent = () => {
@@ -23,6 +28,16 @@ const LandingPageContent = () => {
         return <CurriculumBlock key={block.id} block={block} />;
       case 'testimonials':
         return <TestimonialsBlock key={block.id} block={block} />;
+      case 'offer':
+        return <OfferBlock key={block.id} block={block} />;
+      case 'instructor':
+        return <InstructorBlock key={block.id} block={block} />;
+      case 'faq':
+        return <FaqBlock key={block.id} block={block} />;
+      case 'cta':
+        return <CtaBlock key={block.id} block={block} />;
+      case 'footer':
+        return <FooterBlock key={block.id} block={block} />;
       default:
         return null;
     }
