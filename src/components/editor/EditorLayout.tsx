@@ -9,14 +9,22 @@ import PageSettings from './PageSettings';
 import PagePreview from './PagePreview';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Dialog, DialogContent, DialogTrigger, DialogClose } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger, DialogClose, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Settings, Plus, List } from 'lucide-react';
 
 const EditorLayout = () => {
-  const { isPreviewMode, selectedBlockId } = useEditor();
+  const { isPreviewMode, selectedBlockId, clearBlockSelection } = useEditor();
   const [propertiesOpen, setPropertiesOpen] = useState(false);
   const [blockDialogOpen, setBlockDialogOpen] = useState(false);
+  
+  const handleClosePropertiesDialog = () => {
+    setPropertiesOpen(false);
+    // Only clear selection when explicitly closing the dialog
+    if (!propertiesOpen) {
+      clearBlockSelection();
+    }
+  };
   
   return (
     <div className="h-screen w-full overflow-hidden flex flex-col bg-background">
@@ -56,9 +64,11 @@ const EditorLayout = () => {
                         <Button variant="outline" className="w-full">Selecionar Tipo de Bloco</Button>
                       </DialogTrigger>
                       <DialogContent>
-                        <h2 className="text-xl font-semibold mb-4">Escolha um tipo de bloco</h2>
+                        <DialogTitle>Escolha um tipo de bloco</DialogTitle>
                         <BlockSelector onBlockSelected={() => setBlockDialogOpen(false)} />
-                        <DialogClose className="mt-4" />
+                        <DialogClose asChild>
+                          <Button variant="outline" className="mt-4">Fechar</Button>
+                        </DialogClose>
                       </DialogContent>
                     </Dialog>
                   </AccordionContent>
@@ -88,7 +98,13 @@ const EditorLayout = () => {
       )}
       
       {selectedBlockId && !isPreviewMode && (
-        <Dialog open={propertiesOpen || !!selectedBlockId} onOpenChange={setPropertiesOpen}>
+        <Dialog 
+          open={propertiesOpen || !!selectedBlockId} 
+          onOpenChange={(open) => {
+            setPropertiesOpen(open);
+            if (!open) clearBlockSelection();
+          }}
+        >
           <DialogTrigger asChild>
             <Button 
               className="fixed bottom-4 right-4 z-50"
@@ -98,7 +114,11 @@ const EditorLayout = () => {
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+            <DialogTitle>Propriedades do Bloco</DialogTitle>
             <BlockProperties />
+            <DialogClose asChild>
+              <Button variant="outline" className="mt-4">Fechar</Button>
+            </DialogClose>
           </DialogContent>
         </Dialog>
       )}

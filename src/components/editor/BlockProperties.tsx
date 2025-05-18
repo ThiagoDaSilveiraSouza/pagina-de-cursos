@@ -29,10 +29,29 @@ const BlockProperties = () => {
   if (!block) return null;
   
   const handleContentChange = (field: string, value: string) => {
+    let processedValue = value;
+    
+    // Handle items array that might come as JSON string
+    if (field === 'items' && typeof value === 'string') {
+      try {
+        const parsedItems = JSON.parse(value);
+        updateBlock(selectedBlockId, {
+          content: {
+            ...block.content,
+            items: parsedItems
+          }
+        });
+        return;
+      } catch (error) {
+        console.error('Failed to parse items JSON', error);
+        // Continue with normal update if JSON parse fails
+      }
+    }
+    
     updateBlock(selectedBlockId, {
       content: {
         ...block.content,
-        [field]: value
+        [field]: processedValue
       }
     });
   };
@@ -61,17 +80,19 @@ const BlockProperties = () => {
     field: keyof BlockStyles[K] & string, 
     value: any
   ) => {
-    const updatedCategory = {
-      ...block.styles[category],
-      [field]: value
-    } as BlockStyles[K];
+    const updatedStyles = { ...block.styles };
+    const categoryObject = { ...updatedStyles[category] };
     
-    updateBlock(selectedBlockId, {
-      styles: {
-        ...block.styles,
-        [category]: updatedCategory
-      }
-    });
+    // Type safety: ensure categoryObject[field] exists before trying to update it
+    if (field in categoryObject) {
+      // @ts-ignore - we've already checked that field exists in categoryObject
+      categoryObject[field] = value;
+      updatedStyles[category] = categoryObject;
+      
+      updateBlock(selectedBlockId, {
+        styles: updatedStyles
+      });
+    }
   };
 
   return (
