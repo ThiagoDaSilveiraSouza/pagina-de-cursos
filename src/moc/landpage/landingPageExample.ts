@@ -2,22 +2,22 @@ import { v4 as uuidv4 } from 'uuid';
 import { LandingPageData } from '@/types/editor';
 
 export const landingPageExample: LandingPageData = {
-  title: "Minha Landing Page",
+  title: "Curso de Inteligência Artificial",
   blocks: [
     {
       id: uuidv4(),
       type: 'hero',
       name: 'Hero Section',
       background: {
-        type: 'color',
-        value: '#f9fafb'
+        type: 'image',
+        value: 'https://images.unsplash.com/photo-1555949963-4d8430a7f4b5?auto=format&fit=crop&w=1350&q=80'
       },
       styles: {
-        padding: { top: 64, bottom: 64, left: 16, right: 16 },
+        padding: { top: 80, bottom: 80, left: 24, right: 24 },
         margin: { top: 0, bottom: 0 },
         borderRadius: 0,
-        shadow: 'none',
-        border: { width: 0, color: '#000000', style: 'none' }
+        shadow: 'md',
+        border: { width: 0, color: '#000', style: 'none' }
       },
       layout: {
         columns: 2,
@@ -25,119 +25,30 @@ export const landingPageExample: LandingPageData = {
         verticalAlignment: 'center'
       },
       content: {
-        title: 'Domine o React e Construa Apps Modernos',
-        subtitle: 'Aprenda a construir aplicações React do zero ao avançado',
-        content: 'Nosso curso completo te leva da base até conceitos avançados com projetos reais e mentoria.',
-        ctaText: 'Começar Agora',
+        title: 'Domine a Inteligência Artificial e o Futuro da Tecnologia',
+        subtitle: 'Aprenda IA, Machine Learning e Deep Learning com especialistas do mercado',
+        content: 'Curso completo com aulas práticas, projetos reais e certificação. Ideal para iniciantes e profissionais.',
+        ctaText: 'Matricule-se Agora',
         ctaLink: '#pricing',
-        image: 'https://images.unsplash.com/photo-1581276879432-15e50529f34b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+        image: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1350&q=80'
       },
       active: true,
       order: 0
     },
     {
       id: uuidv4(),
-      type: 'products',
-      name: 'Produtos em Destaque',
-      background: {
-        type: 'color',
-        value: '#f9fafb'
-      },
-      styles: {
-        padding: { top: 64, bottom: 64, left: 16, right: 16 },
-        margin: { top: 0, bottom: 0 },
-        borderRadius: 0,
-        shadow: 'none',
-        border: { width: 0, color: '#000000', style: 'none' }
-      },
-      layout: {
-        columns: 1,
-        alignment: 'center',
-        verticalAlignment: 'top'
-      },
-      content: {
-        title: 'Produtos Recomendados',
-        subtitle: 'Escolhas especialmente selecionadas para você',
-        products: [
-          {
-            id: uuidv4(),
-            name: 'Curso Completo de Design UX/UI',
-            description: 'Aprenda a criar interfaces intuitivas e experiências de usuário incríveis com este curso completo.',
-            price: 497.00,
-            images: [
-              'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-            ],
-            features: [
-              '40 horas de conteúdo em vídeo',
-              'Projetos práticos para portfolio',
-              'Certificado de conclusão',
-              'Acesso vitalício'
-            ]
-          },
-          {
-            id: uuidv4(),
-            name: 'Mentoria em Desenvolvimento Web',
-            description: 'Sessões personalizadas de mentoria para acelerar sua carreira como desenvolvedor web.',
-            price: 1299.00,
-            images: [
-              'https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-            ],
-            features: [
-              '4 sessões mensais de 1 hora',
-              'Revisão de código personalizada',
-              'Orientação de carreira',
-              'Acompanhamento de projetos'
-            ]
-          },
-          {
-            id: uuidv4(),
-            name: 'E-book: Dominando JavaScript',
-            description: 'Um guia completo sobre JavaScript moderno, incluindo ES6+, Promises, async/await e mais.',
-            price: 79.90,
-            images: [
-              'https://images.unsplash.com/photo-1544716278-e513176f20b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-            ],
-            features: [
-              '300 páginas de conteúdo',
-              'Exemplos práticos e exercícios',
-              'Formato PDF e EPUB',
-              'Atualizações gratuitas'
-            ]
-          },
-          {
-            id: uuidv4(),
-            name: 'Pacote de Templates React',
-            description: 'Coleção de templates React prontos para uso em seus projetos profissionais.',
-            price: 149.00,
-            images: [
-              'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-            ],
-            features: [
-              '10 templates responsivos',
-              'Código limpo e bem organizado',
-              'Documentação completa',
-              'Suporte por 6 meses'
-            ]
-          }
-        ]
-      },
-      active: true,
-      order: 6
-    },
-    {
-      id: uuidv4(),
       type: 'benefits',
-      name: 'Key Benefits',
+      name: 'Benefícios do Curso',
       background: {
         type: 'color',
-        value: '#ffffff'
+        value: '#f8fafc'
       },
       styles: {
-        padding: { top: 48, bottom: 48, left: 16, right: 16 },
+        padding: { top: 56, bottom: 56, left: 20, right: 20 },
         margin: { top: 0, bottom: 0 },
-        borderRadius: 8,
+        borderRadius: 12,
         shadow: 'sm',
-        border: { width: 1, color: '#e2e8f0', style: 'solid' }
+        border: { width: 0, color: '#e5e7eb', style: 'solid' }
       },
       layout: {
         columns: 3,
@@ -145,24 +56,12 @@ export const landingPageExample: LandingPageData = {
         verticalAlignment: 'top'
       },
       content: {
-        title: 'Transforme sua Carreira com React',
-        subtitle: 'Veja como nosso curso pode impulsionar suas habilidades e abrir novas portas',
+        title: 'Por que escolher nosso curso de IA?',
+        subtitle: 'Uma abordagem prática e moderna para aprender IA',
         items: [
-          {
-            title: 'Aprendizado Prático',
-            content: 'Projetos reais que você pode adicionar ao seu portfólio.',
-            icon: 'Code'
-          },
-          {
-            title: 'Mentoria Exclusiva',
-            content: 'Acesso direto a mentores experientes para tirar suas dúvidas.',
-            icon: 'HelpCircle'
-          },
-          {
-            title: 'Comunidade Ativa',
-            content: 'Networking com outros estudantes e profissionais da área.',
-            icon: 'Users'
-          }
+          { title: 'Projetos Reais', content: 'Aprenda criando aplicações com IA e ML reais.', icon: 'Cpu' },
+          { title: 'Aulas Atualizadas', content: 'Conteúdo sempre atualizado com as últimas tendências.', icon: 'Zap' },
+          { title: 'Comunidade Profissional', content: 'Participe de uma comunidade ativa de alunos e especialistas.', icon: 'Users' }
         ]
       },
       active: true,
@@ -171,17 +70,17 @@ export const landingPageExample: LandingPageData = {
     {
       id: uuidv4(),
       type: 'curriculum',
-      name: 'Course Curriculum',
+      name: 'Conteúdo do Curso',
       background: {
         type: 'color',
-        value: '#f0f9ff'
+        value: '#ffffff'
       },
       styles: {
-        padding: { top: 32, bottom: 32, left: 16, right: 16 },
+        padding: { top: 48, bottom: 48, left: 20, right: 20 },
         margin: { top: 0, bottom: 0 },
         borderRadius: 0,
         shadow: 'none',
-        border: { width: 0, color: '#000000', style: 'none' }
+        border: { width: 0, color: '#000', style: 'none' }
       },
       layout: {
         columns: 1,
@@ -189,25 +88,13 @@ export const landingPageExample: LandingPageData = {
         verticalAlignment: 'top'
       },
       content: {
-        title: 'Currículo do Curso',
-        subtitle: 'Módulos e aulas que você vai encontrar no curso',
+        title: 'Módulos do Curso',
+        subtitle: 'Domine do básico ao avançado com módulos completos',
         items: [
-          {
-            title: 'Módulo 1: Introdução ao React',
-            content: 'Setup do ambiente, JSX, componentes funcionais e de classe.'
-          },
-          {
-            title: 'Módulo 2: Componentes e Props',
-            content: 'Aprofundando em props, state e lifecycle dos componentes.'
-          },
-          {
-            title: 'Módulo 3: Hooks do React',
-            content: 'Utilizando useState, useEffect e criando seus próprios hooks.'
-          },
-          {
-            title: 'Módulo 4: Gerenciamento de Estado',
-            content: 'Context API, Redux e outras soluções para gerenciar o estado da aplicação.'
-          }
+          { title: 'Módulo 1: Fundamentos de IA', content: 'História, aplicações, tipos de IA e ética.' },
+          { title: 'Módulo 2: Machine Learning', content: 'Algoritmos supervisionados, não supervisionados e validação de modelos.' },
+          { title: 'Módulo 3: Deep Learning', content: 'Redes neurais, CNNs, RNNs e NLP com TensorFlow e PyTorch.' },
+          { title: 'Módulo 4: IA Generativa', content: 'Introdução a modelos como GPT, Diffusion Models e aplicações com IA criativa.' }
         ]
       },
       active: true,
@@ -216,17 +103,17 @@ export const landingPageExample: LandingPageData = {
     {
       id: uuidv4(),
       type: 'testimonials',
-      name: 'Student Testimonials',
+      name: 'Depoimentos',
       background: {
         type: 'color',
-        value: '#ffffff'
+        value: '#f1f5f9'
       },
       styles: {
-        padding: { top: 48, bottom: 48, left: 16, right: 16 },
+        padding: { top: 48, bottom: 48, left: 20, right: 20 },
         margin: { top: 0, bottom: 0 },
-        borderRadius: 8,
+        borderRadius: 12,
         shadow: 'md',
-        border: { width: 0, color: '#000000', style: 'none' }
+        border: { width: 0, color: '#000', style: 'none' }
       },
       layout: {
         columns: 1,
@@ -234,19 +121,11 @@ export const landingPageExample: LandingPageData = {
         verticalAlignment: 'top'
       },
       content: {
-        title: 'O que nossos alunos estão dizendo',
-        subtitle: 'Veja os depoimentos de quem já transformou sua carreira com nosso curso',
+        title: 'Alunos que já mudaram de vida com IA',
+        subtitle: 'Veja o que dizem nossos alunos',
         items: [
-          {
-            title: 'João Silva',
-            content: 'O curso superou minhas expectativas! Aprendi muito e já estou aplicando em projetos reais.',
-            image: 'https://randomuser.me/api/portraits/men/1.jpg'
-          },
-          {
-            title: 'Maria Oliveira',
-            content: 'A mentoria foi essencial para tirar minhas dúvidas e me dar um direcionamento na carreira.',
-            image: 'https://randomuser.me/api/portraits/women/2.jpg'
-          }
+          { title: 'Ana Pereira', content: 'Graças ao curso, consegui meu primeiro emprego como engenheira de IA!', image: 'https://randomuser.me/api/portraits/women/68.jpg' },
+          { title: 'Carlos Martins', content: 'A didática e os projetos práticos me ajudaram a entender IA de verdade.', image: 'https://randomuser.me/api/portraits/men/45.jpg' }
         ]
       },
       active: true,
@@ -255,17 +134,17 @@ export const landingPageExample: LandingPageData = {
     {
       id: uuidv4(),
       type: 'offer',
-      name: 'Special Offer',
+      name: 'Oferta Especial',
       background: {
         type: 'gradient',
-        value: 'linear-gradient(to right, #6366f1, #a855f7)'
+        value: 'linear-gradient(to right, #0ea5e9, #6366f1)'
       },
       styles: {
-        padding: { top: 64, bottom: 64, left: 16, right: 16 },
+        padding: { top: 64, bottom: 64, left: 24, right: 24 },
         margin: { top: 0, bottom: 0 },
-        borderRadius: 12,
-        shadow: 'lg',
-        border: { width: 0, color: '#000000', style: 'none' }
+        borderRadius: 16,
+        shadow: 'xl',
+        border: { width: 0, color: '#000', style: 'none' }
       },
       layout: {
         columns: 1,
@@ -273,25 +152,16 @@ export const landingPageExample: LandingPageData = {
         verticalAlignment: 'center'
       },
       content: {
-        title: 'Oferta Especial por Tempo Limitado',
-        subtitle: 'Inscreva-se agora e ganhe descontos exclusivos',
-        content: 'Aproveite nossa oferta especial e garanta seu acesso ao curso completo com um preço incrível.',
-        ctaText: 'Inscrever-se Agora',
+        title: 'Desconto Exclusivo por Tempo Limitado',
+        subtitle: 'Garanta agora sua vaga no curso completo de IA',
+        content: 'Inscreva-se hoje e aproveite condições especiais. Vagas limitadas!',
+        ctaText: 'Quero Aprender IA',
         ctaLink: '#pricing',
-        image: 'https://images.unsplash.com/photo-1550064824-8f993041b160?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        image: 'https://images.unsplash.com/photo-1656424859314-812a5e548d8f?auto=format&fit=crop&w=1350&q=80',
         items: [
-          {
-            title: 'Desconto de 50%',
-            content: 'Aproveite 50% de desconto no curso completo.'
-          },
-          {
-            title: 'Acesso Vitalício',
-            content: 'Acesso ilimitado ao conteúdo do curso.'
-          },
-          {
-            title: 'Mentoria Gratuita',
-            content: 'Sessões de mentoria individual inclusas.'
-          }
+          { title: '40% de Desconto', content: 'Oferta válida até o final da semana.' },
+          { title: 'Acesso Vitalício', content: 'Estude no seu ritmo, sem prazos.' },
+          { title: 'Certificação Profissional', content: 'Receba um certificado reconhecido no mercado.' }
         ]
       },
       active: true,
@@ -300,17 +170,17 @@ export const landingPageExample: LandingPageData = {
     {
       id: uuidv4(),
       type: 'instructor',
-      name: 'Our Instructor',
+      name: 'Instrutor',
       background: {
         type: 'color',
         value: '#ffffff'
       },
       styles: {
-        padding: { top: 48, bottom: 48, left: 16, right: 16 },
+        padding: { top: 48, bottom: 48, left: 24, right: 24 },
         margin: { top: 0, bottom: 0 },
-        borderRadius: 8,
-        shadow: 'md',
-        border: { width: 0, color: '#000000', style: 'none' }
+        borderRadius: 12,
+        shadow: 'lg',
+        border: { width: 0, color: '#000', style: 'none' }
       },
       layout: {
         columns: 2,
@@ -318,30 +188,75 @@ export const landingPageExample: LandingPageData = {
         verticalAlignment: 'center'
       },
       content: {
-        title: 'Conheça o Instrutor',
-        subtitle: 'Um especialista em React com anos de experiência no mercado',
-        content: 'Nosso instrutor é um desenvolvedor experiente com anos de experiência em React e apaixonado por ensinar.',
+        title: 'Conheça seu Professor',
+        subtitle: 'Especialista em IA com mais de 10 anos de experiência',
+        content: 'PhD em Ciência da Computação, consultor em projetos de IA e apaixonado por ensinar. Já ajudou mais de 5.000 alunos a ingressarem em empresas de tecnologia de ponta.',
         ctaText: 'Ver Perfil',
         ctaLink: '#instructor',
-        image: 'https://images.unsplash.com/photo-1544005279-0aca48d13c7d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80'
       },
       active: true,
       order: 5
     },
     {
       id: uuidv4(),
-      type: 'faq',
-      name: 'Frequently Asked Questions',
+      type: 'products',
+      name: 'Cursos Relacionados',
       background: {
         type: 'color',
-        value: '#f9fafb'
+        value: '#f8fafc'
+      },
+      styles: {
+        padding: { top: 56, bottom: 56, left: 20, right: 20 },
+        margin: { top: 0, bottom: 0 },
+        borderRadius: 0,
+        shadow: 'none',
+        border: { width: 0, color: '#000', style: 'none' }
+      },
+      layout: {
+        columns: 1,
+        alignment: 'center',
+        verticalAlignment: 'top'
+      },
+      content: {
+        title: 'Outros Cursos Recomendados',
+        subtitle: 'Aprenda mais e aumente suas habilidades',
+        products: [
+          {
+            id: uuidv4(),
+            name: 'Curso de Visão Computacional',
+            description: 'Aprenda a usar IA para analisar imagens e vídeos.',
+            price: 597.00,
+            images: ['https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=1350&q=80'],
+            features: ['20h de conteúdo', 'Exemplos práticos com OpenCV', 'Acesso vitalício', 'Certificado incluído']
+          },
+          {
+            id: uuidv4(),
+            name: 'Processamento de Linguagem Natural (NLP)',
+            description: 'Domine técnicas modernas de NLP com Python.',
+            price: 699.00,
+            images: ['https://images.unsplash.com/photo-1505678261036-a3fcc5e884ee?auto=format&fit=crop&w=1350&q=80'],
+            features: ['Transformers', 'Chatbots', 'Text Classification', 'Fine-tuning de modelos']
+          }
+        ]
+      },
+      active: true,
+      order: 6
+    },
+    {
+      id: uuidv4(),
+      type: 'faq',
+      name: 'FAQ',
+      background: {
+        type: 'color',
+        value: '#ffffff'
       },
       styles: {
         padding: { top: 32, bottom: 32, left: 16, right: 16 },
         margin: { top: 0, bottom: 0 },
         borderRadius: 0,
         shadow: 'none',
-        border: { width: 0, color: '#000000', style: 'none' }
+        border: { width: 0, color: '#000', style: 'none' }
       },
       layout: {
         columns: 1,
@@ -350,20 +265,11 @@ export const landingPageExample: LandingPageData = {
       },
       content: {
         title: 'Perguntas Frequentes',
-        subtitle: 'Tire suas dúvidas sobre o curso',
+        subtitle: 'Tudo que você precisa saber antes de começar',
         items: [
-          {
-            title: 'Qual o nível de conhecimento necessário para fazer o curso?',
-            content: 'O curso é para todos os níveis, desde iniciantes até avançados.'
-          },
-          {
-            title: 'O curso tem certificado de conclusão?',
-            content: 'Sim, o curso tem certificado de conclusão.'
-          },
-          {
-            title: 'Por quanto tempo terei acesso ao curso?',
-            content: 'O acesso ao curso é vitalício.'
-          }
+          { title: 'Preciso saber programar?', content: 'Conhecimento básico em lógica ou Python ajuda, mas o curso cobre os fundamentos.' },
+          { title: 'O curso é certificado?', content: 'Sim! Emitimos certificado profissional após a conclusão.' },
+          { title: 'É possível estudar no meu ritmo?', content: 'Sim! O curso é 100% online com acesso vitalício.' }
         ]
       },
       active: true,
@@ -375,14 +281,14 @@ export const landingPageExample: LandingPageData = {
       name: 'Call to Action',
       background: {
         type: 'gradient',
-        value: 'linear-gradient(to right, #3b82f6, #6366f1)'
+        value: 'linear-gradient(to right, #3b82f6, #8b5cf6)'
       },
       styles: {
         padding: { top: 64, bottom: 64, left: 16, right: 16 },
         margin: { top: 0, bottom: 0 },
         borderRadius: 12,
         shadow: 'lg',
-        border: { width: 0, color: '#000000', style: 'none' }
+        border: { width: 0, color: '#000', style: 'none' }
       },
       layout: {
         columns: 1,
@@ -390,12 +296,12 @@ export const landingPageExample: LandingPageData = {
         verticalAlignment: 'center'
       },
       content: {
-        title: 'Pronto para Começar?',
-        subtitle: 'Não perca mais tempo e comece a transformar sua carreira agora mesmo',
-        content: 'Inscreva-se no nosso curso e tenha acesso a todo o conteúdo, mentoria e comunidade exclusiva.',
-        ctaText: 'Começar Agora',
+        title: 'Dê o próximo passo na sua carreira',
+        subtitle: 'Aproveite agora e transforme seu futuro com IA',
+        content: 'A inteligência artificial está moldando o mundo — e você pode fazer parte disso.',
+        ctaText: 'Matricule-se Já',
         ctaLink: '#pricing',
-        image: 'https://images.unsplash.com/photo-1518770660439-464ef52689bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+        image: 'https://images.unsplash.com/photo-1605902711622-cfb43c4437d7?auto=format&fit=crop&w=1350&q=80'
       },
       active: true,
       order: 8
@@ -403,55 +309,51 @@ export const landingPageExample: LandingPageData = {
     {
       id: uuidv4(),
       type: 'footer',
-      name: 'Footer',
+      name: 'Rodapé',
       background: {
         type: 'color',
-        value: '#1e293b'
+        value: '#f3f4f6'
       },
       styles: {
-        padding: { top: 32, bottom: 32, left: 16, right: 16 },
+        padding: { top: 48, bottom: 48, left: 24, right: 24 },
         margin: { top: 0, bottom: 0 },
         borderRadius: 0,
         shadow: 'none',
-        border: { width: 0, color: '#000000', style: 'none' }
+        border: { width: 0, color: '#000', style: 'none' }
       },
       layout: {
-        columns: 1,
+        columns: 3,
         alignment: 'center',
         verticalAlignment: 'top'
       },
       content: {
-        title: 'Entre em Contato',
-        subtitle: 'Estamos sempre prontos para te ajudar',
+        title: 'Fale Conosco',
+        subtitle: 'Estamos aqui para tirar suas dúvidas',
         items: [
-          {
-            title: 'Email',
-            content: 'contato@example.com'
-          },
-          {
-            title: 'Telefone',
-            content: '+55 11 99999-9999'
-          },
-          {
-            title: 'Redes Sociais',
-            content: '@example'
-          }
-        ]
+          { title: 'Email', content: 'suporte@cursosia.com' },
+          { title: 'WhatsApp', content: '+55 11 91234-5678' },
+          { title: 'Telefone', content: '+55 11 4002-8922' },
+          { title: 'Sobre Nós', content: '#about' },
+          { title: 'Blog', content: '#blog' },
+          { title: 'Termos de Uso', content: '#terms' },
+          { title: 'Política de Privacidade', content: '#privacy' }
+        ],
+        content: '© 2025 CursosIA. Todos os direitos reservados.'
       },
       active: true,
       order: 9
     }
   ],
   metadata: {
-    title: "Curso de React | Aprenda a construir apps modernos",
-    description: "Domine React e construa aplicações web modernas e responsivas com nosso curso completo.",
-    keywords: "react, javascript, desenvolvimento web, curso online"
+    title: "Curso de Inteligência Artificial | Aprenda IA do Zero ao Avançado",
+    description: "Domine Inteligência Artificial com nosso curso completo. Aprenda IA, Machine Learning e Deep Learning com projetos reais.",
+    keywords: "inteligência artificial, machine learning, deep learning, IA, curso IA"
   },
   settings: {
     fontPrimary: "Inter",
-    fontSecondary: "Poppins",
-    colorPrimary: "#3b82f6",
-    colorSecondary: "#1e293b",
-    colorAccent: "#f97316"
+    fontSecondary: "Roboto",
+    colorPrimary: "#6366f1",
+    colorSecondary: "#0f172a",
+    colorAccent: "#f59e0b"
   }
 };
