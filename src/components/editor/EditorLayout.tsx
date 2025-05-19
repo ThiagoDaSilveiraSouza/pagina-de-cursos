@@ -16,7 +16,6 @@ import { Settings, Plus, List } from 'lucide-react';
 const EditorLayout = () => {
   const { isPreviewMode, selectedBlockId, clearBlockSelection } = useEditor();
   const [propertiesOpen, setPropertiesOpen] = useState(false);
-  const [blockDialogOpen, setBlockDialogOpen] = useState(false);
   
   const handleClosePropertiesDialog = () => {
     setPropertiesOpen(false);
@@ -59,20 +58,8 @@ const EditorLayout = () => {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
-                    <Dialog open={blockDialogOpen} onOpenChange={setBlockDialogOpen}>
-                      <DialogTrigger asChild>
-                        <Button variant="outline" className="w-full">Selecionar Tipo de Bloco</Button>
-                      </DialogTrigger>
-                      <DialogContent>
-                        <DialogHeader>
-                          <DialogTitle>Escolha um tipo de bloco</DialogTitle>
-                        </DialogHeader>
-                        <BlockSelector onBlockSelected={() => setBlockDialogOpen(false)} />
-                        <DialogClose asChild>
-                          <Button variant="outline" className="mt-4">Fechar</Button>
-                        </DialogClose>
-                      </DialogContent>
-                    </Dialog>
+                    {/* Removed the Dialog and button, now showing BlockSelector directly */}
+                    <BlockSelector />
                   </AccordionContent>
                 </AccordionItem>
                 

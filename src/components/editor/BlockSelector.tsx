@@ -21,11 +21,7 @@ import {
   PlusCircle
 } from 'lucide-react';
 
-interface BlockSelectorProps {
-  onBlockSelected?: () => void;
-}
-
-const BlockSelector = ({ onBlockSelected }: BlockSelectorProps) => {
+const BlockSelector = () => {
   const { addBlock } = useEditor();
 
   const blocks: { type: BlockType, label: string, icon: React.ReactNode, description: string }[] = [
@@ -87,9 +83,6 @@ const BlockSelector = ({ onBlockSelected }: BlockSelectorProps) => {
 
   const handleAddBlock = (type: BlockType) => {
     addBlock(type);
-    if (onBlockSelected) {
-      onBlockSelected();
-    }
   };
 
   return (
