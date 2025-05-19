@@ -5,7 +5,18 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { BlockType } from '@/types/editor';
 import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { FileText, BookOpen, MessageSquare, User, HelpCircle, MousePointer, FootprintsIcon, CheckCircle, PlusCircle } from 'lucide-react';
+import { 
+  FileText, 
+  BookOpen, 
+  MessageSquare, 
+  User, 
+  HelpCircle, 
+  MousePointer, 
+  FootprintsIcon, 
+  CheckCircle, 
+  PlusCircle,
+  ShoppingCart 
+} from 'lucide-react';
 
 const BlockTypeSelector = () => {
   const { selectedBlockId, updateBlock, landingPage } = useEditor();
@@ -24,6 +35,7 @@ const BlockTypeSelector = () => {
     { value: 'instructor', label: 'Instrutor', icon: <User className="h-4 w-4" /> },
     { value: 'faq', label: 'FAQ', icon: <HelpCircle className="h-4 w-4" /> },
     { value: 'cta', label: 'CTA', icon: <MousePointer className="h-4 w-4" /> },
+    { value: 'products', label: 'Produtos', icon: <ShoppingCart className="h-4 w-4" /> },
     { value: 'footer', label: 'Rodapé', icon: <FootprintsIcon className="h-4 w-4" /> },
   ];
   

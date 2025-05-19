@@ -75,7 +75,7 @@ const BlockProperties = () => {
     });
   };
   
-  // Fix the type error by specifying correct typing for handleStyleChange
+  // Fixed the type error by properly typing the function parameters
   const handleStyleChange = (
     category: keyof BlockStyles, 
     field: string, 
@@ -85,7 +85,7 @@ const BlockProperties = () => {
     
     if (category in updatedStyles) {
       // Create a safe copy of the category object
-      const categoryObject = { ...updatedStyles[category] } as Record<string, any>;
+      const categoryObject = { ...updatedStyles[category as keyof BlockStyles] } as Record<string, any>;
       
       // Update the field if it exists
       categoryObject[field] = value;
@@ -101,7 +101,7 @@ const BlockProperties = () => {
   };
 
   return (
-    <ScrollArea className="max-h-[80vh]">
+    <ScrollArea className="max-h-[90vh]">
       <div className="p-4">
         <BlockTypeSelector />
         

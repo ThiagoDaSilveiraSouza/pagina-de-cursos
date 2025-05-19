@@ -11,6 +11,7 @@ import InstructorBlock from '@/components/blocks/InstructorBlock';
 import FaqBlock from '@/components/blocks/FaqBlock';
 import CtaBlock from '@/components/blocks/CtaBlock';
 import FooterBlock from '@/components/blocks/FooterBlock';
+import ProductsBlock from '@/components/blocks/ProductsBlock';
 
 // This component handles the actual rendering of the landing page blocks
 const LandingPageContent = () => {
@@ -36,6 +37,8 @@ const LandingPageContent = () => {
         return <FaqBlock key={block.id} block={block} />;
       case 'cta':
         return <CtaBlock key={block.id} block={block} />;
+      case 'products':
+        return <ProductsBlock key={block.id} block={block} />;
       case 'footer':
         return <FooterBlock key={block.id} block={block} />;
       default:

@@ -1,397 +1,370 @@
-
-import { LandingPageData } from "@/types/editor";
+import { v4 as uuidv4 } from 'uuid';
+import { LandingPageData } from '@/types/editor';
+import { productsBlock } from './productsBlock';
 
 export const landingPageExample: LandingPageData = {
-  "title": "Academia de Programação Web",
-  "metadata": {
-    "title": "Academia de Programação Web | Aprenda a Criar Sites Modernos",
-    "description": "Domine as tecnologias web mais requisitadas do mercado: React, Typescript, TailwindCSS e Node.js. Comece sua jornada profissional agora!",
-    "keywords": "programação web, react, typescript, tailwindcss, nodejs, curso online, desenvolvimento web"
-  },
-  "settings": {
-    "fontPrimary": "Inter",
-    "fontSecondary": "Poppins",
-    "colorPrimary": "#3b82f6",
-    "colorSecondary": "#1e40af",
-    "colorAccent": "#f97316"
-  },
-  "blocks": [
+  title: "Minha Landing Page",
+  blocks: [
     {
-      "id": "block-hero",
-      "type": "hero",
-      "name": "Seção Hero",
-      "background": {
-        "type": "gradient",
-        "value": "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)"
+      id: uuidv4(),
+      type: 'hero',
+      name: 'Hero Section',
+      background: {
+        type: 'color',
+        value: '#f9fafb'
       },
-      "styles": {
-        "padding": { "top": 80, "bottom": 80, "left": 20, "right": 20 },
-        "margin": { "top": 0, "bottom": 0 },
-        "borderRadius": 0,
-        "shadow": "none",
-        "border": { "width": 0, "color": "#000", "style": "none" }
+      styles: {
+        padding: { top: 64, bottom: 64, left: 16, right: 16 },
+        margin: { top: 0, bottom: 0 },
+        borderRadius: 0,
+        shadow: 'none',
+        border: { width: 0, color: '#000000', style: 'none' }
       },
-      "layout": {
-        "columns": 2,
-        "alignment": "center",
-        "verticalAlignment": "center"
+      layout: {
+        columns: 2,
+        alignment: 'left',
+        verticalAlignment: 'center'
       },
-      "content": {
-        "title": "Domine o Desenvolvimento Web Moderno",
-        "subtitle": "Aprenda as tecnologias mais requisitadas pelo mercado",
-        "content": "Transforme sua carreira com nosso curso completo que te ensina a criar aplicações web profissionais usando as ferramentas mais atuais.",
-        "ctaText": "Comece Agora",
-        "ctaLink": "#oferta",
-        "image": "https://images.unsplash.com/photo-1546146830-2cca9512c68e?w=600&auto=format&fit=crop&q=80"
+      content: {
+        title: 'Domine o React e Construa Apps Modernos',
+        subtitle: 'Aprenda a construir aplicações React do zero ao avançado',
+        content: 'Nosso curso completo te leva da base até conceitos avançados com projetos reais e mentoria.',
+        ctaText: 'Começar Agora',
+        ctaLink: '#pricing',
+        image: 'https://images.unsplash.com/photo-1581276879432-15e50529f34b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
       },
-      "active": true,
-      "order": 0
+      active: true,
+      order: 0
     },
+    productsBlock,
     {
-      "id": "block-benefits",
-      "type": "benefits",
-      "name": "Benefícios",
-      "background": {
-        "type": "color",
-        "value": "#ffffff"
+      id: uuidv4(),
+      type: 'benefits',
+      name: 'Key Benefits',
+      background: {
+        type: 'color',
+        value: '#ffffff'
       },
-      "styles": {
-        "padding": { "top": 80, "bottom": 80, "left": 20, "right": 20 },
-        "margin": { "top": 0, "bottom": 0 },
-        "borderRadius": 0,
-        "shadow": "none",
-        "border": { "width": 0, "color": "#000", "style": "none" }
+      styles: {
+        padding: { top: 48, bottom: 48, left: 16, right: 16 },
+        margin: { top: 0, bottom: 0 },
+        borderRadius: 8,
+        shadow: 'sm',
+        border: { width: 1, color: '#e2e8f0', style: 'solid' }
       },
-      "layout": {
-        "columns": 3,
-        "alignment": "center",
-        "verticalAlignment": "top"
+      layout: {
+        columns: 3,
+        alignment: 'center',
+        verticalAlignment: 'top'
       },
-      "content": {
-        "title": "Por que Escolher Nossa Academia?",
-        "subtitle": "Confira os diferenciais que vão te ajudar a se destacar no mercado",
-        "items": [
+      content: {
+        title: 'Transforme sua Carreira com React',
+        subtitle: 'Veja como nosso curso pode impulsionar suas habilidades e abrir novas portas',
+        items: [
           {
-            "title": "Projetos Reais",
-            "content": "Construa aplicações completas que poderá incluir em seu portfólio",
-            "icon": "code"
+            title: 'Aprendizado Prático',
+            content: 'Projetos reais que você pode adicionar ao seu portfólio.',
+            icon: 'Code'
           },
           {
-            "title": "Mentoria Personalizada",
-            "content": "Acesso a mentores experientes para tirar dúvidas e acelerar seu aprendizado",
-            "icon": "users"
+            title: 'Mentoria Exclusiva',
+            content: 'Acesso direto a mentores experientes para tirar suas dúvidas.',
+            icon: 'HelpCircle'
           },
           {
-            "title": "Certificado Reconhecido",
-            "content": "Receba um certificado valorizado no mercado após a conclusão do curso",
-            "icon": "award"
+            title: 'Comunidade Ativa',
+            content: 'Networking com outros estudantes e profissionais da área.',
+            icon: 'Users'
           }
         ]
       },
-      "active": true,
-      "order": 1
+      active: true,
+      order: 1
     },
     {
-      "id": "block-curriculum",
-      "type": "curriculum",
-      "name": "Conteúdo do Curso",
-      "background": {
-        "type": "color",
-        "value": "#f8fafc"
+      id: uuidv4(),
+      type: 'curriculum',
+      name: 'Course Curriculum',
+      background: {
+        type: 'color',
+        value: '#f0f9ff'
       },
-      "styles": {
-        "padding": { "top": 80, "bottom": 80, "left": 20, "right": 20 },
-        "margin": { "top": 0, "bottom": 0 },
-        "borderRadius": 0,
-        "shadow": "none",
-        "border": { "width": 0, "color": "#000", "style": "none" }
+      styles: {
+        padding: { top: 32, bottom: 32, left: 16, right: 16 },
+        margin: { top: 0, bottom: 0 },
+        borderRadius: 0,
+        shadow: 'none',
+        border: { width: 0, color: '#000000', style: 'none' }
       },
-      "layout": {
-        "columns": 2,
-        "alignment": "center",
-        "verticalAlignment": "top"
+      layout: {
+        columns: 1,
+        alignment: 'left',
+        verticalAlignment: 'top'
       },
-      "content": {
-        "title": "O Que Você Vai Aprender",
-        "subtitle": "Conteúdo completo para te transformar em um desenvolvedor web full-stack",
-        "items": [
+      content: {
+        title: 'Currículo do Curso',
+        subtitle: 'Módulos e aulas que você vai encontrar no curso',
+        items: [
           {
-            "title": "Fundamentos HTML/CSS",
-            "content": "Domine a estrutura e a estilização de páginas web modernas",
-            "icon": "file-text"
+            title: 'Módulo 1: Introdução ao React',
+            content: 'Setup do ambiente, JSX, componentes funcionais e de classe.'
           },
           {
-            "title": "JavaScript Avançado",
-            "content": "Aprenda a criar interatividade e manipular dados de forma eficiente",
-            "icon": "code"
+            title: 'Módulo 2: Componentes e Props',
+            content: 'Aprofundando em props, state e lifecycle dos componentes.'
           },
           {
-            "title": "React & Hooks",
-            "content": "Desenvolva interfaces reativas e componentizadas com a biblioteca mais popular do mercado",
-            "icon": "layers"
+            title: 'Módulo 3: Hooks do React',
+            content: 'Utilizando useState, useEffect e criando seus próprios hooks.'
           },
           {
-            "title": "TypeScript",
-            "content": "Adicione tipagem estática ao seu código para evitar bugs e melhorar a produtividade",
-            "icon": "check-circle"
-          },
-          {
-            "title": "TailwindCSS",
-            "content": "Crie designs responsivos e modernos com o framework CSS utilitário mais eficiente",
-            "icon": "palette"
-          },
-          {
-            "title": "Node.js & APIs",
-            "content": "Construa backends robustos e APIs RESTful para suas aplicações",
-            "icon": "server"
+            title: 'Módulo 4: Gerenciamento de Estado',
+            content: 'Context API, Redux e outras soluções para gerenciar o estado da aplicação.'
           }
         ]
       },
-      "active": true,
-      "order": 2
+      active: true,
+      order: 2
     },
     {
-      "id": "block-testimonials",
-      "type": "testimonials",
-      "name": "Depoimentos",
-      "background": {
-        "type": "gradient",
-        "value": "linear-gradient(to right, #e0f2fe, #dbeafe)"
+      id: uuidv4(),
+      type: 'testimonials',
+      name: 'Student Testimonials',
+      background: {
+        type: 'color',
+        value: '#ffffff'
       },
-      "styles": {
-        "padding": {
-          "top": 80,
-          "bottom": 80,
-          "left": 20,
-          "right": 20
-        },
-        "margin": {
-          "top": 0,
-          "bottom": 0
-        },
-        "borderRadius": 0,
-        "shadow": "none",
-        "border": {
-          "width": 0,
-          "color": "#000",
-          "style": "none"
-        }
+      styles: {
+        padding: { top: 48, bottom: 48, left: 16, right: 16 },
+        margin: { top: 0, bottom: 0 },
+        borderRadius: 8,
+        shadow: 'md',
+        border: { width: 0, color: '#000000', style: 'none' }
       },
-      "layout": {
-        "columns": 2,
-        "alignment": "center",
-        "verticalAlignment": "top"
+      layout: {
+        columns: 1,
+        alignment: 'center',
+        verticalAlignment: 'top'
       },
-      "content": {
-        "title": "O Que Nossos Alunos Dizem",
-        "subtitle": "Histórias reais de pessoas que transformaram suas carreiras",
-        "items": [
+      content: {
+        title: 'O que nossos alunos estão dizendo',
+        subtitle: 'Veja os depoimentos de quem já transformou sua carreira com nosso curso',
+        items: [
           {
-            "title": "Pedro Oliveira",
-            "content": "Depois de concluir o curso, consegui minha primeira vaga como desenvolvedor React. O conteúdo prático e as mentorias foram essenciais para meu sucesso!",
-            "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop"
+            title: 'João Silva',
+            content: 'O curso superou minhas expectativas! Aprendi muito e já estou aplicando em projetos reais.',
+            image: 'https://randomuser.me/api/portraits/men/1.jpg'
           },
           {
-            "title": "Amanda Santos",
-            "content": "Mesmo sem experiência prévia em programação, consegui acompanhar todo o conteúdo e hoje trabalho como desenvolvedora front-end em uma startup internacional.",
-            "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop"
+            title: 'Maria Oliveira',
+            content: 'A mentoria foi essencial para tirar minhas dúvidas e me dar um direcionamento na carreira.',
+            image: 'https://randomuser.me/api/portraits/women/2.jpg'
           }
         ]
       },
-      "active": true,
-      "order": 3
+      active: true,
+      order: 3
     },
     {
-      "id": "block-instructor",
-      "type": "instructor",
-      "name": "Instrutor",
-      "background": {
-        "type": "color",
-        "value": "#ffffff"
+      id: uuidv4(),
+      type: 'offer',
+      name: 'Special Offer',
+      background: {
+        type: 'gradient',
+        value: 'linear-gradient(to right, #6366f1, #a855f7)'
       },
-      "styles": {
-        "padding": { "top": 80, "bottom": 80, "left": 20, "right": 20 },
-        "margin": { "top": 0, "bottom": 0 },
-        "borderRadius": 0,
-        "shadow": "none",
-        "border": { "width": 0, "color": "#000", "style": "none" }
+      styles: {
+        padding: { top: 64, bottom: 64, left: 16, right: 16 },
+        margin: { top: 0, bottom: 0 },
+        borderRadius: 12,
+        shadow: 'lg',
+        border: { width: 0, color: '#000000', style: 'none' }
       },
-      "layout": {
-        "columns": 2,
-        "alignment": "left",
-        "verticalAlignment": "center"
+      layout: {
+        columns: 1,
+        alignment: 'center',
+        verticalAlignment: 'center'
       },
-      "content": {
-        "title": "Conheça seu Mentor",
-        "subtitle": "Quem vai te guiar nessa jornada de aprendizado",
-        "content": "Rafael Almeida é desenvolvedor full-stack com mais de 10 anos de experiência no mercado. Trabalhou em empresas como Google, Microsoft e diversas startups de sucesso. Sua paixão é transformar iniciantes em desenvolvedores de alto nível através de uma metodologia prática e objetiva.",
-        "image": "https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=300&h=300&fit=crop"
-      },
-      "active": true,
-      "order": 4
-    },
-    {
-      "id": "block-offer",
-      "type": "offer",
-      "name": "Oferta Especial",
-      "background": {
-        "type": "gradient",
-        "value": "linear-gradient(to right, #f0fdf4, #dcfce7)"
-      },
-      "styles": {
-        "padding": { "top": 80, "bottom": 80, "left": 20, "right": 20 },
-        "margin": { "top": 0, "bottom": 0 },
-        "borderRadius": 0,
-        "shadow": "none",
-        "border": {
-          "width": 0,
-          "color": "#000",
-          "style": "none"
-        }
-      },
-      "layout": {
-        "columns": 1,
-        "alignment": "center",
-        "verticalAlignment": "center"
-      },
-      "content": {
-        "title": "Comece sua Jornada Hoje",
-        "subtitle": "Promoção por tempo limitado",
-        "content": "Acesso vitalício a todas as atualizações e novos módulos do curso",
-        "ctaText": "Quero Garantir Minha Vaga",
-        "ctaLink": "#form",
-        "items": [
+      content: {
+        title: 'Oferta Especial por Tempo Limitado',
+        subtitle: 'Inscreva-se agora e ganhe descontos exclusivos',
+        content: 'Aproveite nossa oferta especial e garanta seu acesso ao curso completo com um preço incrível.',
+        ctaText: 'Inscrever-se Agora',
+        ctaLink: '#pricing',
+        image: 'https://images.unsplash.com/photo-1550064824-8f993041b160?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        items: [
           {
-            "title": "Acesso Completo",
-            "content": "Mais de 100 horas de conteúdo em vídeo e material complementar"
+            title: 'Desconto de 50%',
+            content: 'Aproveite 50% de desconto no curso completo.'
           },
           {
-            "title": "Mentoria Personalizada",
-            "content": "6 meses de suporte direto com os instrutores para tirar dúvidas"
+            title: 'Acesso Vitalício',
+            content: 'Acesso ilimitado ao conteúdo do curso.'
           },
           {
-            "title": "Comunidade Exclusiva",
-            "content": "Participe de um grupo seleto de alunos para networking e colaboração"
-          },
-          {
-            "title": "Projetos Práticos",
-            "content": "Desenvolva 8 projetos completos para o seu portfólio"
+            title: 'Mentoria Gratuita',
+            content: 'Sessões de mentoria individual inclusas.'
           }
         ]
       },
-      "active": true,
-      "order": 5
+      active: true,
+      order: 4
     },
     {
-      "id": "block-faq",
-      "type": "faq",
-      "name": "Perguntas Frequentes",
-      "background": {
-        "type": "color",
-        "value": "#f8fafc"
+      id: uuidv4(),
+      type: 'instructor',
+      name: 'Our Instructor',
+      background: {
+        type: 'color',
+        value: '#ffffff'
       },
-      "styles": {
-        "padding": { "top": 80, "bottom": 80, "left": 20, "right": 20 },
-        "margin": { "top": 0, "bottom": 0 },
-        "borderRadius": 0,
-        "shadow": "none",
-        "border": { "width": 0, "color": "#000", "style": "none" }
+      styles: {
+        padding: { top: 48, bottom: 48, left: 16, right: 16 },
+        margin: { top: 0, bottom: 0 },
+        borderRadius: 8,
+        shadow: 'md',
+        border: { width: 0, color: '#000000', style: 'none' }
       },
-      "layout": {
-        "columns": 1,
-        "alignment": "center",
-        "verticalAlignment": "top"
+      layout: {
+        columns: 2,
+        alignment: 'left',
+        verticalAlignment: 'center'
       },
-      "content": {
-        "title": "Dúvidas Frequentes",
-        "subtitle": "Respostas para as perguntas mais comuns",
-        "items": [
+      content: {
+        title: 'Conheça o Instrutor',
+        subtitle: 'Um especialista em React com anos de experiência no mercado',
+        content: 'Nosso instrutor é um desenvolvedor experiente com anos de experiência em React e apaixonado por ensinar.',
+        ctaText: 'Ver Perfil',
+        ctaLink: '#instructor',
+        image: 'https://images.unsplash.com/photo-1544005279-0aca48d13c7d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+      },
+      active: true,
+      order: 5
+    },
+    {
+      id: uuidv4(),
+      type: 'faq',
+      name: 'Frequently Asked Questions',
+      background: {
+        type: 'color',
+        value: '#f9fafb'
+      },
+      styles: {
+        padding: { top: 32, bottom: 32, left: 16, right: 16 },
+        margin: { top: 0, bottom: 0 },
+        borderRadius: 0,
+        shadow: 'none',
+        border: { width: 0, color: '#000000', style: 'none' }
+      },
+      layout: {
+        columns: 1,
+        alignment: 'left',
+        verticalAlignment: 'top'
+      },
+      content: {
+        title: 'Perguntas Frequentes',
+        subtitle: 'Tire suas dúvidas sobre o curso',
+        items: [
           {
-            "title": "Preciso ter conhecimento prévio em programação?",
-            "content": "Não, o curso foi desenvolvido para pessoas que estão começando do zero. Vamos construir uma base sólida antes de avançar para os tópicos mais complexos."
+            title: 'Qual o nível de conhecimento necessário para fazer o curso?',
+            content: 'O curso é para todos os níveis, desde iniciantes até avançados.'
           },
           {
-            "title": "Por quanto tempo terei acesso ao curso?",
-            "content": "O acesso é vitalício! Você poderá assistir às aulas quantas vezes quiser e terá direito a todas as atualizações futuras do conteúdo."
+            title: 'O curso tem certificado de conclusão?',
+            content: 'Sim, o curso tem certificado de conclusão.'
           },
           {
-            "title": "Como funcionam as mentorias?",
-            "content": "Você terá acesso a sessões semanais de mentoria em grupo e poderá enviar suas dúvidas por escrito a qualquer momento, com resposta garantida em até 48 horas."
-          },
-          {
-            "title": "Posso pedir reembolso se o curso não atender minhas expectativas?",
-            "content": "Sim, oferecemos garantia de 30 dias. Se você não ficar satisfeito com o conteúdo, devolvemos 100% do seu investimento, sem burocracia."
+            title: 'Por quanto tempo terei acesso ao curso?',
+            content: 'O acesso ao curso é vitalício.'
           }
         ]
       },
-      "active": true,
-      "order": 6
+      active: true,
+      order: 7
     },
     {
-      "id": "block-cta",
-      "type": "cta",
-      "name": "Chamada Final",
-      "background": {
-        "type": "gradient",
-        "value": "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)"
+      id: uuidv4(),
+      type: 'cta',
+      name: 'Call to Action',
+      background: {
+        type: 'gradient',
+        value: 'linear-gradient(to right, #3b82f6, #6366f1)'
       },
-      "styles": {
-        "padding": { "top": 80, "bottom": 80, "left": 20, "right": 20 },
-        "margin": { "top": 0, "bottom": 0 },
-        "borderRadius": 0,
-        "shadow": "none",
-        "border": { "width": 0, "color": "#000", "style": "none" }
+      styles: {
+        padding: { top: 64, bottom: 64, left: 16, right: 16 },
+        margin: { top: 0, bottom: 0 },
+        borderRadius: 12,
+        shadow: 'lg',
+        border: { width: 0, color: '#000000', style: 'none' }
       },
-      "layout": {
-        "columns": 1,
-        "alignment": "center",
-        "verticalAlignment": "center"
+      layout: {
+        columns: 1,
+        alignment: 'center',
+        verticalAlignment: 'center'
       },
-      "content": {
-        "title": "Sua Carreira em Desenvolvimento Web Começa Aqui",
-        "subtitle": "Junte-se a mais de 3.000 alunos que já transformaram suas vidas",
-        "ctaText": "Inscreva-se Agora",
-        "ctaLink": "#form"
+      content: {
+        title: 'Pronto para Começar?',
+        subtitle: 'Não perca mais tempo e comece a transformar sua carreira agora mesmo',
+        content: 'Inscreva-se no nosso curso e tenha acesso a todo o conteúdo, mentoria e comunidade exclusiva.',
+        ctaText: 'Começar Agora',
+        ctaLink: '#pricing',
+        image: 'https://images.unsplash.com/photo-1518770660439-464ef52689bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
       },
-      "active": true,
-      "order": 7
+      active: true,
+      order: 8
     },
     {
-      "id": "block-footer",
-      "type": "footer",
-      "name": "Rodapé",
-      "background": {
-        "type": "color",
-        "value": "#0f172a"
+      id: uuidv4(),
+      type: 'footer',
+      name: 'Footer',
+      background: {
+        type: 'color',
+        value: '#1e293b'
       },
-      "styles": {
-        "padding": { "top": 60, "bottom": 60, "left": 20, "right": 20 },
-        "margin": { "top": 0, "bottom": 0 },
-        "borderRadius": 0,
-        "shadow": "none",
-        "border": { "width": 0, "color": "#000", "style": "none" }
+      styles: {
+        padding: { top: 32, bottom: 32, left: 16, right: 16 },
+        margin: { top: 0, bottom: 0 },
+        borderRadius: 0,
+        shadow: 'none',
+        border: { width: 0, color: '#000000', style: 'none' }
       },
-      "layout": {
-        "columns": 3,
-        "alignment": "left",
-        "verticalAlignment": "top"
+      layout: {
+        columns: 1,
+        alignment: 'center',
+        verticalAlignment: 'top'
       },
-      "content": {
-        "title": "Academia de Programação Web",
-        "content": "Transformando iniciantes em desenvolvedores profissionais desde 2020.",
-        "items": [
+      content: {
+        title: 'Entre em Contato',
+        subtitle: 'Estamos sempre prontos para te ajudar',
+        items: [
           {
-            "title": "Links Rápidos",
-            "content": "Início|#\nCurso|#curso\nDepoimentos|#depoimentos\nFAQ|#faq\nContato|#contato"
+            title: 'Email',
+            content: 'contato@example.com'
           },
           {
-            "title": "Contato",
-            "content": "Email|mailto:contato@academiaweb.com.br\nWhatsApp|https://wa.me/5511999999999\nInstagram|https://instagram.com/academiaweb"
+            title: 'Telefone',
+            content: '+55 11 99999-9999'
+          },
+          {
+            title: 'Redes Sociais',
+            content: '@example'
           }
         ]
       },
-      "active": true,
-      "order": 8
+      active: true,
+      order: 9
     }
-  ]
-}
+  ],
+  metadata: {
+    title: "Curso de React | Aprenda a construir apps modernos",
+    description: "Domine React e construa aplicações web modernas e responsivas com nosso curso completo.",
+    keywords: "react, javascript, desenvolvimento web, curso online"
+  },
+  settings: {
+    fontPrimary: "Inter",
+    fontSecondary: "Poppins",
+    colorPrimary: "#3b82f6",
+    colorSecondary: "#1e293b",
+    colorAccent: "#f97316"
+  }
+};
