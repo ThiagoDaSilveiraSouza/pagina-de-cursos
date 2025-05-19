@@ -69,10 +69,44 @@ const SheetContent = React.forwardRef<
   };
 
   const handleMouseMove = (e: MouseEvent) => {
-    if (isDragging) {
+    if (isDragging && sheetRef.current) {
+      // Get viewport dimensions
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      
+      // Get sheet dimensions
+      const sheetRect = sheetRef.current.getBoundingClientRect();
+      const sheetWidth = sheetRect.width;
+      const sheetHeight = sheetRect.height;
+      
+      // Calculate new position with delta
       const deltaX = e.clientX - startPos.x;
       const deltaY = e.clientY - startPos.y;
-      setPosition(prev => ({ x: prev.x + deltaX, y: prev.y + deltaY }));
+      
+      let newPos;
+      
+      // Apply different constraints based on sheet side
+      if (side === "left" || side === "right") {
+        // Only allow horizontal movement for side sheets
+        // Set bounds to prevent moving sheet out of view
+        const minX = side === "right" ? -sheetWidth + 100 : 0; // Right sheet can't move too far left
+        const maxX = side === "left" ? sheetWidth - 100 : 0;   // Left sheet can't move too far right
+        newPos = { 
+          x: Math.max(minX, Math.min(maxX, position.x + deltaX)),
+          y: 0 
+        };
+      } else {
+        // Only allow vertical movement for top/bottom sheets
+        // Set bounds to prevent moving sheet out of view
+        const minY = side === "bottom" ? -sheetHeight + 100 : 0; // Bottom sheet can't move too far up
+        const maxY = side === "top" ? sheetHeight - 100 : 0;      // Top sheet can't move too far down
+        newPos = { 
+          x: 0,
+          y: Math.max(minY, Math.min(maxY, position.y + deltaY)) 
+        };
+      }
+      
+      setPosition(newPos);
       setStartPos({ x: e.clientX, y: e.clientY });
     }
   };
@@ -93,7 +127,7 @@ const SheetContent = React.forwardRef<
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isDragging]);
+  }, [isDragging, side]);
 
   let translateStyle = {};
   if (side === "right" || side === "left") {

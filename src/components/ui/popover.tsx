@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import * as PopoverPrimitive from "@radix-ui/react-popover"
 
@@ -27,10 +26,36 @@ const PopoverContent = React.forwardRef<
   };
 
   const handleMouseMove = (e: MouseEvent) => {
-    if (isDragging) {
+    if (isDragging && popoverRef.current) {
+      // Get viewport dimensions
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      
+      // Get popover dimensions
+      const popoverRect = popoverRef.current.getBoundingClientRect();
+      const popoverWidth = popoverRect.width;
+      const popoverHeight = popoverRect.height;
+      
+      // Calculate new position with delta
       const deltaX = e.clientX - startPos.x;
       const deltaY = e.clientY - startPos.y;
-      setPosition(prev => ({ x: prev.x + deltaX, y: prev.y + deltaY }));
+      
+      // Calculate new position
+      const newX = position.x + deltaX;
+      const newY = position.y + deltaY;
+      
+      // Calculate boundaries to keep popover visible
+      // Create boundary limits (leave 20px visible at edges)
+      const minX = -(viewportWidth - 20);
+      const maxX = viewportWidth - 20;
+      const minY = -(viewportHeight - 20);
+      const maxY = viewportHeight - 20;
+      
+      // Apply boundaries
+      const boundedX = Math.max(minX, Math.min(maxX, newX));
+      const boundedY = Math.max(minY, Math.min(maxY, newY));
+      
+      setPosition({ x: boundedX, y: boundedY });
       setStartPos({ x: e.clientX, y: e.clientY });
     }
   };

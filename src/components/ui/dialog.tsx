@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
@@ -31,7 +30,7 @@ const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
 >(({ className, children, ...props }, ref) => {
-  const [position, setPosition] = React.useState({ x: 50, y: 50 });
+  const [position, setPosition] = React.useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = React.useState(false);
   const [startPos, setStartPos] = React.useState({ x: 0, y: 0 });
   const dialogRef = React.useRef<HTMLDivElement>(null);
@@ -44,10 +43,33 @@ const DialogContent = React.forwardRef<
   };
 
   const handleMouseMove = (e: MouseEvent) => {
-    if (isDragging) {
+    if (isDragging && dialogRef.current) {
+      // Get viewport dimensions
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      
+      // Get dialog dimensions
+      const dialogRect = dialogRef.current.getBoundingClientRect();
+      const dialogWidth = dialogRect.width;
+      const dialogHeight = dialogRect.height;
+      
+      // Calculate new position
       const deltaX = e.clientX - startPos.x;
       const deltaY = e.clientY - startPos.y;
-      setPosition(prev => ({ x: prev.x + deltaX, y: prev.y + deltaY }));
+      const newX = position.x + deltaX;
+      const newY = position.y + deltaY;
+      
+      // Calculate boundaries to keep dialog within viewport
+      const minX = -(viewportWidth / 2 - 50); // Left boundary (allow small portion to remain visible)
+      const maxX = viewportWidth / 2 - 50;    // Right boundary
+      const minY = -(viewportHeight / 2 - 50); // Top boundary
+      const maxY = viewportHeight / 2 - 50;    // Bottom boundary
+      
+      // Apply boundaries
+      const boundedX = Math.max(minX, Math.min(maxX, newX));
+      const boundedY = Math.max(minY, Math.min(maxY, newY));
+      
+      setPosition({ x: boundedX, y: boundedY });
       setStartPos({ x: e.clientX, y: e.clientY });
     }
   };
