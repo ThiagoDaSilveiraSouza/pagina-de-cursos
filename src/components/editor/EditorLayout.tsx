@@ -9,7 +9,7 @@ import PageSettings from './PageSettings';
 import PagePreview from './PagePreview';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Dialog, DialogContent, DialogTrigger, DialogClose, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger, DialogClose, DialogTitle, DialogHeader } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Settings, Plus, List } from 'lucide-react';
 
@@ -64,7 +64,9 @@ const EditorLayout = () => {
                         <Button variant="outline" className="w-full">Selecionar Tipo de Bloco</Button>
                       </DialogTrigger>
                       <DialogContent>
-                        <DialogTitle>Escolha um tipo de bloco</DialogTitle>
+                        <DialogHeader>
+                          <DialogTitle>Escolha um tipo de bloco</DialogTitle>
+                        </DialogHeader>
                         <BlockSelector onBlockSelected={() => setBlockDialogOpen(false)} />
                         <DialogClose asChild>
                           <Button variant="outline" className="mt-4">Fechar</Button>
@@ -107,14 +109,16 @@ const EditorLayout = () => {
         >
           <DialogTrigger asChild>
             <Button 
-              className="fixed bottom-4 right-4 z-50"
+              className="fixed bottom-4 right-4 z-40"
               variant="default"
             >
               Editar Bloco
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
-            <DialogTitle>Propriedades do Bloco</DialogTitle>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Propriedades do Bloco</DialogTitle>
+            </DialogHeader>
             <BlockProperties />
             <DialogClose asChild>
               <Button variant="outline" className="mt-4">Fechar</Button>
