@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Block, BlockType, LandingPageData } from '../types/editor';
 import { v4 as uuidv4 } from 'uuid';
@@ -18,8 +17,10 @@ interface EditorContextType {
   selectBlock: (blockId: string | null) => void;
   moveBlockUp: (blockId: string) => void;
   moveBlockDown: (blockId: string) => void;
+  moveBlock: (sourceBlockId: string, targetBlockId: string) => void;
   duplicateBlock: (blockId: string) => void;
-  clearBlockSelection: () => void; // Add this method
+  clearBlockSelection: () => void;
+  publishChanges: () => void;
 
   // Page Settings
   updatePageSettings: (settings: Partial<LandingPageData['settings']>) => void;
@@ -42,6 +43,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
   const [selectedBlockId, setSelectedBlockId] = useState<string | null>(null);
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [devicePreview, setDevicePreview] = useState<'desktop' | 'mobile'>('desktop');
+  const [publishedData, setPublishedData] = useState<LandingPageData>(landingPageExample);
 
   const addBlock = (type: BlockType) => {
     const newBlock: Block = {
@@ -115,7 +117,6 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     setIsPreviewMode(false);
   };
 
-  // Add the clearBlockSelection method
   const clearBlockSelection = () => {
     setSelectedBlockId(null);
   };
@@ -160,6 +161,35 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     }));
   };
 
+  const moveBlock = (sourceBlockId: string, targetBlockId: string) => {
+    const blocksCopy = [...landingPage.blocks];
+    const sourceIndex = blocksCopy.findIndex(block => block.id === sourceBlockId);
+    const targetIndex = blocksCopy.findIndex(block => block.id === targetBlockId);
+    
+    if (sourceIndex === -1 || targetIndex === -1) return;
+    
+    // Remove source block from the array
+    const [movedBlock] = blocksCopy.splice(sourceIndex, 1);
+    
+    // Insert it at target position
+    blocksCopy.splice(targetIndex, 0, movedBlock);
+    
+    // Update order property for all blocks
+    blocksCopy.forEach((block, index) => {
+      block.order = index;
+    });
+    
+    setLandingPage(prev => ({
+      ...prev,
+      blocks: blocksCopy
+    }));
+    
+    toast({
+      title: "Posição do bloco atualizada",
+      description: "A ordem dos blocos foi alterada com sucesso.",
+    });
+  };
+
   const duplicateBlock = (blockId: string) => {
     const blockToDuplicate = landingPage.blocks.find(block => block.id === blockId);
     if (!blockToDuplicate) return;
@@ -180,6 +210,15 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     toast({
       title: "Bloco duplicado",
       description: `${newBlock.name} foi criado com sucesso.`,
+    });
+  };
+
+  const publishChanges = () => {
+    setPublishedData({...landingPage});
+    
+    toast({
+      title: "Alterações publicadas",
+      description: "Suas alterações foram publicadas com sucesso.",
     });
   };
 
@@ -253,8 +292,10 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
       selectBlock,
       moveBlockUp,
       moveBlockDown,
+      moveBlock,
       duplicateBlock,
-      clearBlockSelection, // Add this method to the context
+      clearBlockSelection,
+      publishChanges,
       updatePageSettings,
       updatePageMetadata,
       togglePreviewMode,

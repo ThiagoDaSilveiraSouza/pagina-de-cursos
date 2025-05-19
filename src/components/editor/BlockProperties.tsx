@@ -11,6 +11,7 @@ import ContentProperties from './properties/ContentProperties';
 import LayoutProperties from './properties/LayoutProperties';
 import BackgroundProperties from './properties/BackgroundProperties';
 import StylesProperties from './properties/StylesProperties';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const BlockProperties = () => {
   const { landingPage, selectedBlockId, updateBlock } = useEditor();
@@ -75,9 +76,9 @@ const BlockProperties = () => {
   };
   
   // Fix the type error by specifying correct typing for handleStyleChange
-  const handleStyleChange = <K extends keyof BlockStyles>(
-    category: K, 
-    field: keyof BlockStyles[K] & string, 
+  const handleStyleChange = (
+    category: keyof BlockStyles, 
+    field: string, 
     value: any
   ) => {
     const updatedStyles = { ...block.styles };
@@ -87,76 +88,76 @@ const BlockProperties = () => {
       const categoryObject = { ...updatedStyles[category] } as Record<string, any>;
       
       // Update the field if it exists
-      if (field in categoryObject) {
-        categoryObject[field] = value;
-        
-        // Update the styles with the new category object
-        updateBlock(selectedBlockId, {
-          styles: {
-            ...updatedStyles,
-            [category]: categoryObject
-          }
-        });
-      }
+      categoryObject[field] = value;
+      
+      // Update the styles with the new category object
+      updateBlock(selectedBlockId, {
+        styles: {
+          ...updatedStyles,
+          [category]: categoryObject
+        }
+      });
     }
   };
 
   return (
-    <>
-      <BlockTypeSelector />
-      
-      <Card className="w-full">
-        <CardContent className="p-4">
-          <div className="mb-4">
-            <Label htmlFor="blockName">Nome do Bloco</Label>
-            <Input 
-              id="blockName" 
-              value={block.name} 
-              onChange={(e) => updateBlock(selectedBlockId, { name: e.target.value })} 
-              className="mt-1"
-            />
-          </div>
-          
-          <Tabs defaultValue="content">
-            <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="content">Conteúdo</TabsTrigger>
-              <TabsTrigger value="layout">Layout</TabsTrigger>
-              <TabsTrigger value="background">Background</TabsTrigger>
-              <TabsTrigger value="styles">Estilos</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="content" className="mt-4 space-y-4">
-              <ContentProperties 
-                block={block}
-                handleContentChange={handleContentChange}
+    <ScrollArea className="max-h-[80vh]">
+      <div className="p-4">
+        <BlockTypeSelector />
+        
+        <Card className="w-full">
+          <CardContent className="p-4">
+            <div className="mb-4">
+              <Label htmlFor="blockName">Nome do Bloco</Label>
+              <Input 
+                id="blockName" 
+                value={block.name} 
+                onChange={(e) => updateBlock(selectedBlockId, { name: e.target.value })} 
+                className="mt-1"
               />
-            </TabsContent>
+            </div>
             
-            <TabsContent value="layout" className="mt-4 space-y-4">
-              <LayoutProperties 
-                block={block}
-                handleLayoutChange={handleLayoutChange}
-              />
-            </TabsContent>
-            
-            <TabsContent value="background" className="mt-4 space-y-4">
-              <BackgroundProperties 
-                block={block}
-                handleBackgroundChange={handleBackgroundChange}
-              />
-            </TabsContent>
-            
-            <TabsContent value="styles" className="mt-4 space-y-4">
-              <StylesProperties 
-                block={block}
-                handleStyleChange={handleStyleChange}
-                updateBlock={updateBlock}
-              />
-            </TabsContent>
-          </Tabs>
-        </CardContent>
-      </Card>
-    </>
+            <Tabs defaultValue="content">
+              <TabsList className="grid w-full grid-cols-4">
+                <TabsTrigger value="content">Conteúdo</TabsTrigger>
+                <TabsTrigger value="layout">Layout</TabsTrigger>
+                <TabsTrigger value="background">Background</TabsTrigger>
+                <TabsTrigger value="styles">Estilos</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="content" className="mt-4 space-y-4">
+                <ContentProperties 
+                  block={block}
+                  handleContentChange={handleContentChange}
+                />
+              </TabsContent>
+              
+              <TabsContent value="layout" className="mt-4 space-y-4">
+                <LayoutProperties 
+                  block={block}
+                  handleLayoutChange={handleLayoutChange}
+                />
+              </TabsContent>
+              
+              <TabsContent value="background" className="mt-4 space-y-4">
+                <BackgroundProperties 
+                  block={block}
+                  handleBackgroundChange={handleBackgroundChange}
+                />
+              </TabsContent>
+              
+              <TabsContent value="styles" className="mt-4 space-y-4">
+                <StylesProperties 
+                  block={block}
+                  handleStyleChange={handleStyleChange}
+                  updateBlock={updateBlock}
+                />
+              </TabsContent>
+            </Tabs>
+          </CardContent>
+        </Card>
+      </div>
+    </ScrollArea>
   );
 };
 

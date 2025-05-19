@@ -8,7 +8,8 @@ export type BlockType =
   | 'instructor'
   | 'faq'
   | 'cta'
-  | 'footer';
+  | 'footer'
+  | 'products'; // Add products block type
 
 export type BlockBackground = {
   type: 'color' | 'gradient' | 'image';
@@ -41,6 +42,15 @@ export interface BlockLayout {
   verticalAlignment: 'top' | 'center' | 'bottom';
 }
 
+export interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  images: string[];
+  features?: string[];
+}
+
 export interface BlockContent {
   title?: string;
   subtitle?: string;
@@ -49,6 +59,7 @@ export interface BlockContent {
   ctaLink?: string;
   image?: string;
   video?: string;
+  products?: Product[];
   items?: Array<{ 
     title?: string;
     content?: string;

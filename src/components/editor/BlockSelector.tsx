@@ -18,7 +18,8 @@ import {
   MousePointer,
   FootprintsIcon,
   CheckCircle,
-  PlusCircle
+  PlusCircle,
+  ShoppingCart
 } from 'lucide-react';
 
 const BlockSelector = () => {
@@ -72,6 +73,12 @@ const BlockSelector = () => {
       label: 'CTA',
       icon: <MousePointer />,
       description: 'Chamada para ação destacada'
+    },
+    {
+      type: 'products',
+      label: 'Produtos',
+      icon: <ShoppingCart />,
+      description: 'Lista de produtos em formato carrossel estilo Netflix'
     },
     {
       type: 'footer',
