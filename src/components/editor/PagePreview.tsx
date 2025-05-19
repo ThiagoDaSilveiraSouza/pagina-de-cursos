@@ -10,6 +10,7 @@ import InstructorBlock from '../blocks/InstructorBlock';
 import FaqBlock from '../blocks/FaqBlock';
 import CtaBlock from '../blocks/CtaBlock';
 import FooterBlock from '../blocks/FooterBlock';
+import ProductsBlock from '../blocks/ProductsBlock';
 
 const PagePreview = () => {
   const { landingPage, devicePreview } = useEditor();
@@ -34,6 +35,8 @@ const PagePreview = () => {
         return <FaqBlock key={block.id} block={block} />;
       case 'cta':
         return <CtaBlock key={block.id} block={block} />;
+      case 'products':
+        return <ProductsBlock key={block.id} block={block} />;
       case 'footer':
         return <FooterBlock key={block.id} block={block} />;
       default:
