@@ -6,7 +6,6 @@ import { useEditor } from '@/contexts/EditorContext';
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip';
 import {
@@ -94,25 +93,23 @@ const BlockSelector = () => {
 
   return (
     <div className="space-y-2">
-      <TooltipProvider>
-        {blocks.map((block) => (
-          <Tooltip key={block.type}>
-            <TooltipTrigger asChild>
-              <Button 
-                variant="outline" 
-                className="flex items-center h-auto p-3 justify-start text-left w-full"
-                onClick={() => handleAddBlock(block.type)}
-              >
-                <div className="bg-muted rounded-md p-2 mr-3">{block.icon}</div>
-                <div className="font-medium">{block.label}</div>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="right">
-              <p>{block.description}</p>
-            </TooltipContent>
-          </Tooltip>
-        ))}
-      </TooltipProvider>
+      {blocks.map((block) => (
+        <Tooltip key={block.type}>
+          <TooltipTrigger asChild>
+            <Button 
+              variant="outline" 
+              className="flex items-center h-auto p-3 justify-start text-left w-full"
+              onClick={() => handleAddBlock(block.type)}
+            >
+              <div className="bg-muted rounded-md p-2 mr-3">{block.icon}</div>
+              <div className="font-medium">{block.label}</div>
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="right">
+            <p>{block.description}</p>
+          </TooltipContent>
+        </Tooltip>
+      ))}
     </div>
   );
 };
