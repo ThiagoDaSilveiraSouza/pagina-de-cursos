@@ -10,6 +10,7 @@ const AdminTabs = ({ onTabChange }: { onTabChange: (tab: string) => void }) => {
     { value: 'info', label: 'Informações' },
     { value: 'sales', label: 'Vendas' },
     { value: 'analytics', label: 'Analytics' },
+    { value: 'courses', label: 'Cursos' }, // Added new tab
   ];
   
   const handleTabChange = (value: string) => {
@@ -24,7 +25,7 @@ const AdminTabs = ({ onTabChange }: { onTabChange: (tab: string) => void }) => {
         onValueChange={handleTabChange}
         className="w-full max-w-3xl mx-auto"
       >
-        <TabsList className="grid grid-cols-4">
+        <TabsList className="grid grid-cols-5"> {/* Updated to 5 columns */}
           {tabs.map(tab => (
             <TabsTrigger key={tab.value} value={tab.value}>
               {tab.label}

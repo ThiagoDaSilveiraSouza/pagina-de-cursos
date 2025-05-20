@@ -8,6 +8,7 @@ import AdminTabs from '@/components/editor/AdminTabs';
 import AdminInfoContent from './AdminInfo';
 import AdminSalesContent from './AdminSales';
 import AdminAnalyticsContent from './AdminAnalytics';
+import AdminCoursesContent from './AdminCourses';
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState('editor');
@@ -21,6 +22,8 @@ const Admin = () => {
         return <AdminSalesContent />;
       case 'analytics':
         return <AdminAnalyticsContent />;
+      case 'courses':
+        return <AdminCoursesContent />;
       case 'editor':
       default:
         return <EditorLayout />;
