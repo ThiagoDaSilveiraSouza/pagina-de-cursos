@@ -124,7 +124,7 @@ const BlockProperties = () => {
         break;
     }
 
-    updateBlock({ ...selectedBlock, styles: updatedStyles });
+    updateBlock(selectedBlock.id, { ...selectedBlock, styles: updatedStyles });
   };
 
   const handleBackgroundChange = (type: 'color' | 'gradient' | 'image', value: string) => {
@@ -135,7 +135,7 @@ const BlockProperties = () => {
       value: value,
     };
 
-    updateBlock({ ...selectedBlock, background: updatedBackground });
+    updateBlock(selectedBlock.id, { ...selectedBlock, background: updatedBackground });
     setBackgroundType(type);
 
     if (type === 'color') {
@@ -147,20 +147,20 @@ const BlockProperties = () => {
   
   const handleBlockTypeChange = (value: BlockType) => {
     if (!selectedBlock) return;
-    updateBlock({ ...selectedBlock, type: value });
+    updateBlock(selectedBlock.id, { ...selectedBlock, type: value });
     setBlockType(value);
   };
   
   const handleBlockNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!selectedBlock) return;
     const newName = e.target.value;
-    updateBlock({ ...selectedBlock, name: newName });
+    updateBlock(selectedBlock.id, { ...selectedBlock, name: newName });
     setBlockName(newName);
   };
   
   const handleBlockActiveChange = (value: boolean) => {
     if (!selectedBlock) return;
-    updateBlock({ ...selectedBlock, active: value });
+    updateBlock(selectedBlock.id, { ...selectedBlock, active: value });
     setBlockActive(value);
   };
   
