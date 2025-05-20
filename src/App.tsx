@@ -9,6 +9,12 @@ import Admin from "./pages/Admin";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
+import AdminCoursesPage from "./pages/AdminCourses";
+import AdminNewCoursePage from "./pages/AdminNewCourse";
+import AdminModulesPage from "./pages/AdminModules";
+import AdminLessonsPage from "./pages/AdminLessons";
+import AdminVideosPage from "./pages/AdminVideos";
+import AdminVideoUploadPage from "./pages/AdminVideoUpload";
 
 const queryClient = new QueryClient();
 
@@ -21,7 +27,16 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/*" element={<Admin />} /> {/* Handle all admin subroutes */}
+          
+          {/* Admin routes */}
+          <Route path="/admin/courses" element={<AdminCoursesPage />} />
+          <Route path="/admin/courses/new" element={<AdminNewCoursePage />} />
+          <Route path="/admin/modules" element={<AdminModulesPage />} />
+          <Route path="/admin/lessons" element={<AdminLessonsPage />} />
+          <Route path="/admin/videos" element={<AdminVideosPage />} />
+          <Route path="/admin/videos/upload" element={<AdminVideoUploadPage />} />
+          <Route path="/admin/*" element={<Admin />} /> {/* Catch other admin routes */}
+          
           <Route path="/auth" element={<Auth />} />
           <Route path="/checkout/:productId" element={<Checkout />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
