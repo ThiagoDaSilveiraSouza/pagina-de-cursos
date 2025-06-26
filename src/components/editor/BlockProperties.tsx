@@ -84,7 +84,7 @@ const BlockProperties = () => {
 
   const handleContentChange = (field: string, value: string) => {
     if (selectedBlock) {
-      let parsedValue = value;
+      let parsedValue: any = value;
       
       // Parse JSON for items field
       if (field === 'items') {
