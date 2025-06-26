@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useEditorContext } from '@/contexts/EditorContext';
+import { useEditor } from '@/contexts/EditorContext';
 import { BlockType, BlockBackground, BlockStyles } from '@/types/editor';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
@@ -10,16 +10,16 @@ import StylesProperties from './properties/StylesProperties';
 import ContentProperties from './properties/ContentProperties';
 import LayoutProperties from './properties/LayoutProperties';
 import BlockTypeSelector from './BlockTypeSelector';
-import { ColorPicker } from '@/components/ui/color-picker';
 
 const BlockProperties = () => {
   const { 
-    state, 
+    landingPage,
+    selectedBlockId,
     updateBlock,
-  } = useEditorContext();
+  } = useEditor();
   
-  // Get the selected block from state
-  const selectedBlock = state.selectedBlock;
+  // Get the selected block from landingPage
+  const selectedBlock = landingPage.blocks.find(block => block.id === selectedBlockId);
 
   const [name, setName] = useState('');
   const [active, setActive] = useState(true);
@@ -47,31 +47,57 @@ const BlockProperties = () => {
 
   useEffect(() => {
     if (selectedBlock) {
-      updateBlock({ ...selectedBlock, name, active, type: blockType });
+      updateBlock(selectedBlock.id, { name, active, type: blockType });
     }
   }, [name, active, blockType, selectedBlock, updateBlock]);
 
-  const updateBackground = (background: BlockBackground) => {
+  const handleBackgroundChange = (field: 'type' | 'value', value: string) => {
     if (selectedBlock) {
-      updateBlock({ ...selectedBlock, background });
+      const updatedBackground = { ...selectedBlock.background, [field]: value };
+      updateBlock(selectedBlock.id, { background: updatedBackground });
     }
   };
 
-  const updateStyles = (styles: BlockStyles) => {
+  const handleStyleChange = <K extends keyof BlockStyles>(
+    category: K, 
+    field: keyof BlockStyles[K] & string, 
+    value: any
+  ) => {
     if (selectedBlock) {
-      updateBlock({ ...selectedBlock, styles });
+      const updatedStyles = {
+        ...selectedBlock.styles,
+        [category]: {
+          ...selectedBlock.styles[category],
+          [field]: value
+        }
+      };
+      updateBlock(selectedBlock.id, { styles: updatedStyles });
     }
   };
 
-  const updateLayout = (layout: any) => {
-     if (selectedBlock) {
-       updateBlock({ ...selectedBlock, layout });
-     }
+  const handleLayoutChange = (field: string, value: any) => {
+    if (selectedBlock) {
+      const updatedLayout = { ...selectedBlock.layout, [field]: value };
+      updateBlock(selectedBlock.id, { layout: updatedLayout });
+    }
   };
 
-  const updateContent = (content: any) => {
+  const handleContentChange = (field: string, value: string) => {
     if (selectedBlock) {
-      updateBlock({ ...selectedBlock, content });
+      let parsedValue = value;
+      
+      // Parse JSON for items field
+      if (field === 'items') {
+        try {
+          parsedValue = JSON.parse(value);
+        } catch (e) {
+          // If parsing fails, keep the original value
+          parsedValue = value;
+        }
+      }
+      
+      const updatedContent = { ...selectedBlock.content, [field]: parsedValue };
+      updateBlock(selectedBlock.id, { content: updatedContent });
     }
   };
 
@@ -95,10 +121,7 @@ const BlockProperties = () => {
               onCheckedChange={handleActiveChange}
             />
 
-            <BlockTypeSelector
-              selectedType={blockType}
-              onTypeChange={handleBlockTypeChange}
-            />
+            <BlockTypeSelector />
           </div>
 
           {/* Block Properties Tabs */}
@@ -111,26 +134,27 @@ const BlockProperties = () => {
             </TabsList>
             <TabsContent value="styles">
               <StylesProperties
-                styles={selectedBlock.styles}
-                onStylesChange={updateStyles}
+                block={selectedBlock}
+                handleStyleChange={handleStyleChange}
+                updateBlock={updateBlock}
               />
             </TabsContent>
             <TabsContent value="background">
               <BackgroundProperties
-                background={selectedBlock.background}
-                onBackgroundChange={updateBackground}
+                block={selectedBlock}
+                handleBackgroundChange={handleBackgroundChange}
               />
             </TabsContent>
              <TabsContent value="layout">
                <LayoutProperties
-                 layout={selectedBlock.layout}
-                 onLayoutChange={updateLayout}
+                 block={selectedBlock}
+                 handleLayoutChange={handleLayoutChange}
                />
              </TabsContent>
             <TabsContent value="content">
               <ContentProperties
-                content={selectedBlock.content}
-                onContentChange={updateContent}
+                block={selectedBlock}
+                handleContentChange={handleContentChange}
               />
             </TabsContent>
           </Tabs>
